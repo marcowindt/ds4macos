@@ -11,8 +11,6 @@
 		8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06487125A3BF0B00577AF8 /* ContentView.swift */; };
 		8E06487425A3BF0D00577AF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487325A3BF0D00577AF8 /* Assets.xcassets */; };
 		8E06487725A3BF0D00577AF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487625A3BF0D00577AF8 /* Preview Assets.xcassets */; };
-		8E06488325A3BF0D00577AF8 /* ds4macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06488225A3BF0D00577AF8 /* ds4macosTests.swift */; };
-		8E06488E25A3BF0D00577AF8 /* ds4macosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06488D25A3BF0D00577AF8 /* ds4macosUITests.swift */; };
 		8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0648A625A49D6300577AF8 /* DSUMessage.swift */; };
 		8E0E518225A6540200410DFF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518125A6540200410DFF /* SettingsView.swift */; };
 		8E0E518725A6541300410DFF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518625A6541300410DFF /* InfoView.swift */; };
@@ -47,11 +45,7 @@
 		8E06487825A3BF0D00577AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E06487925A3BF0D00577AF8 /* ds4macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ds4macos.entitlements; sourceTree = "<group>"; };
 		8E06487E25A3BF0D00577AF8 /* ds4macosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ds4macosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E06488225A3BF0D00577AF8 /* ds4macosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosTests.swift; sourceTree = "<group>"; };
-		8E06488425A3BF0D00577AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E06488925A3BF0D00577AF8 /* ds4macosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ds4macosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E06488D25A3BF0D00577AF8 /* ds4macosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosUITests.swift; sourceTree = "<group>"; };
-		8E06488F25A3BF0D00577AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E0648A625A49D6300577AF8 /* DSUMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUMessage.swift; sourceTree = "<group>"; };
 		8E0E518125A6540200410DFF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8E0E518625A6541300410DFF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -89,8 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				8E06486E25A3BF0B00577AF8 /* ds4macos */,
-				8E06488125A3BF0D00577AF8 /* ds4macosTests */,
-				8E06488C25A3BF0D00577AF8 /* ds4macosUITests */,
 				8E06486D25A3BF0B00577AF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -128,24 +120,6 @@
 				8E06487625A3BF0D00577AF8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		8E06488125A3BF0D00577AF8 /* ds4macosTests */ = {
-			isa = PBXGroup;
-			children = (
-				8E06488225A3BF0D00577AF8 /* ds4macosTests.swift */,
-				8E06488425A3BF0D00577AF8 /* Info.plist */,
-			);
-			path = ds4macosTests;
-			sourceTree = "<group>";
-		};
-		8E06488C25A3BF0D00577AF8 /* ds4macosUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8E06488D25A3BF0D00577AF8 /* ds4macosUITests.swift */,
-				8E06488F25A3BF0D00577AF8 /* Info.plist */,
-			);
-			path = ds4macosUITests;
 			sourceTree = "<group>";
 		};
 		8E0E518025A653E400410DFF /* Pages */ = {
@@ -302,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E06488325A3BF0D00577AF8 /* ds4macosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E06488E25A3BF0D00577AF8 /* ds4macosUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
