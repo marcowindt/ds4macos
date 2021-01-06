@@ -2,8 +2,6 @@
 //  ds4macosUITests.swift
 //  ds4macosUITests
 //
-//  Created by Marco Dijkslag on 04/01/2021.
-//
 
 import XCTest
 

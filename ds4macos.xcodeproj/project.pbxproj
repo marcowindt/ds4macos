@@ -13,6 +13,12 @@
 		8E06487725A3BF0D00577AF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487625A3BF0D00577AF8 /* Preview Assets.xcassets */; };
 		8E06488325A3BF0D00577AF8 /* ds4macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06488225A3BF0D00577AF8 /* ds4macosTests.swift */; };
 		8E06488E25A3BF0D00577AF8 /* ds4macosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06488D25A3BF0D00577AF8 /* ds4macosUITests.swift */; };
+		8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0648A625A49D6300577AF8 /* DSUMessage.swift */; };
+		8E0E518225A6540200410DFF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518125A6540200410DFF /* SettingsView.swift */; };
+		8E0E518725A6541300410DFF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518625A6541300410DFF /* InfoView.swift */; };
+		8E0E518C25A6542000410DFF /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518B25A6542000410DFF /* ServerView.swift */; };
+		8E0E519D25A6620700410DFF /* ControllerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E519C25A6620700410DFF /* ControllerInfo.swift */; };
+		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +52,12 @@
 		8E06488925A3BF0D00577AF8 /* ds4macosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ds4macosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E06488D25A3BF0D00577AF8 /* ds4macosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosUITests.swift; sourceTree = "<group>"; };
 		8E06488F25A3BF0D00577AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E0648A625A49D6300577AF8 /* DSUMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUMessage.swift; sourceTree = "<group>"; };
+		8E0E518125A6540200410DFF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8E0E518625A6541300410DFF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		8E0E518B25A6542000410DFF /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
+		8E0E519C25A6620700410DFF /* ControllerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerInfo.swift; sourceTree = "<group>"; };
+		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +108,16 @@
 		8E06486E25A3BF0B00577AF8 /* ds4macos */ = {
 			isa = PBXGroup;
 			children = (
+				8E0E518025A653E400410DFF /* Pages */,
 				8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */,
 				8E06487125A3BF0B00577AF8 /* ContentView.swift */,
 				8E06487325A3BF0D00577AF8 /* Assets.xcassets */,
 				8E06487825A3BF0D00577AF8 /* Info.plist */,
 				8E06487925A3BF0D00577AF8 /* ds4macos.entitlements */,
 				8E06487525A3BF0D00577AF8 /* Preview Content */,
+				8E0648A625A49D6300577AF8 /* DSUMessage.swift */,
+				8E7924AD25A4AE660098A822 /* DSUController.swift */,
+				8E0E519C25A6620700410DFF /* ControllerInfo.swift */,
 			);
 			path = ds4macos;
 			sourceTree = "<group>";
@@ -130,6 +146,16 @@
 				8E06488F25A3BF0D00577AF8 /* Info.plist */,
 			);
 			path = ds4macosUITests;
+			sourceTree = "<group>";
+		};
+		8E0E518025A653E400410DFF /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				8E0E518125A6540200410DFF /* SettingsView.swift */,
+				8E0E518625A6541300410DFF /* InfoView.swift */,
+				8E0E518B25A6542000410DFF /* ServerView.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +287,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0E518225A6540200410DFF /* SettingsView.swift in Sources */,
 				8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */,
+				8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */,
+				8E0E518C25A6542000410DFF /* ServerView.swift in Sources */,
+				8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */,
+				8E0E518725A6541300410DFF /* InfoView.swift in Sources */,
 				8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */,
+				8E0E519D25A6620700410DFF /* ControllerInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,10 +475,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macos.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";
-				DEVELOPMENT_TEAM = JFH2RJBPA9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ds4macos/Info.plist;

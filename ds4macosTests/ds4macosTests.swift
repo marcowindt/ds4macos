@@ -2,8 +2,6 @@
 //  ds4macosTests.swift
 //  ds4macosTests
 //
-//  Created by Marco Dijkslag on 04/01/2021.
-//
 
 import XCTest
 @testable import ds4macos
