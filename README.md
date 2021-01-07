@@ -7,6 +7,6 @@ Also, the UI is very basic and mostly static information.
 
 ## Screenshots
 
-<img src="https://github.com/marcowindt/ds4macos/blob/main/screenshot1.png" alt="Screenshot of the application info view" width="500"/>
-<img src="https://github.com/marcowindt/ds4macos/blob/main/screenshot2.png" alt="Screenshot of the server settings" width="500"/>
-<img src="https://github.com/marcowindt/ds4macos/blob/main/screenshot3.png" alt="Screenshot of the general settings" width="500"/>
+<img src="https://github.com/marcowindt/ds4macos/blob/main/screenshot1.png" alt="Screenshot of the application info view"/>
+<img src="https://github.com/marcowindt/ds4macos/blob/main/screenshot2.png" alt="Screenshot of the server settings"/>
+<img src="https://github.com/marcowindt/ds4macos/blob/main/screenshot3.png" alt="Screenshot of the general settings"/>
