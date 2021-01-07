@@ -31,11 +31,12 @@ struct ContentView: View {
             } else if self.selection == "settings" {
                 SettingsView()
             } else {
-                InfoView(gameControllerInfo: self.gameControllerInfo)
+                InfoView()
             }
             
         }
         .frame(minWidth: 400, minHeight: 250)
+        .environmentObject(gameControllerInfo)
     }
 }
 

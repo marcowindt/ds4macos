@@ -67,7 +67,7 @@ class DSUController {
     var counter: UInt32 = 0x00000000
     
     
-    init(gameController: GCController, slot: UInt8, counter: UInt32, prevMotion: GCMotion) {
+    init(gameController: GCController, slot: UInt8, counter: UInt32) {
         self.slot = slot
         self.counter = counter
         
