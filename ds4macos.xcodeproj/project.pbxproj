@@ -13,11 +13,12 @@
 		8E06487725A3BF0D00577AF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487625A3BF0D00577AF8 /* Preview Assets.xcassets */; };
 		8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0648A625A49D6300577AF8 /* DSUMessage.swift */; };
 		8E0E518225A6540200410DFF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518125A6540200410DFF /* SettingsView.swift */; };
-		8E0E518725A6541300410DFF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518625A6541300410DFF /* InfoView.swift */; };
+		8E0E518725A6541300410DFF /* ControllersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518625A6541300410DFF /* ControllersView.swift */; };
 		8E0E518C25A6542000410DFF /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E518B25A6542000410DFF /* ServerView.swift */; };
 		8E0E519D25A6620700410DFF /* ControllerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E519C25A6620700410DFF /* ControllerInfo.swift */; };
 		8E0E51C425A7620B00410DFF /* DSUServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E51C325A7620B00410DFF /* DSUServer.swift */; };
 		8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E51C825A763D300410DFF /* ControllerService.swift */; };
+		8E1E217E25A8EC220058D04B /* ControllerBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E217D25A8EC220058D04B /* ControllerBox.swift */; };
 		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,11 +51,12 @@
 		8E06488925A3BF0D00577AF8 /* ds4macosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ds4macosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E0648A625A49D6300577AF8 /* DSUMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUMessage.swift; sourceTree = "<group>"; };
 		8E0E518125A6540200410DFF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		8E0E518625A6541300410DFF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		8E0E518625A6541300410DFF /* ControllersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersView.swift; sourceTree = "<group>"; };
 		8E0E518B25A6542000410DFF /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 		8E0E519C25A6620700410DFF /* ControllerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerInfo.swift; sourceTree = "<group>"; };
 		8E0E51C325A7620B00410DFF /* DSUServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUServer.swift; sourceTree = "<group>"; };
 		8E0E51C825A763D300410DFF /* ControllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerService.swift; sourceTree = "<group>"; };
+		8E1E217D25A8EC220058D04B /* ControllerBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerBox.swift; sourceTree = "<group>"; };
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,11 +133,20 @@
 		8E0E518025A653E400410DFF /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				8E1E217C25A8EC120058D04B /* Controller */,
 				8E0E518125A6540200410DFF /* SettingsView.swift */,
-				8E0E518625A6541300410DFF /* InfoView.swift */,
+				8E0E518625A6541300410DFF /* ControllersView.swift */,
 				8E0E518B25A6542000410DFF /* ServerView.swift */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		8E1E217C25A8EC120058D04B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8E1E217D25A8EC220058D04B /* ControllerBox.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +284,10 @@
 				8E0E518C25A6542000410DFF /* ServerView.swift in Sources */,
 				8E0E51C425A7620B00410DFF /* DSUServer.swift in Sources */,
 				8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */,
-				8E0E518725A6541300410DFF /* InfoView.swift in Sources */,
+				8E0E518725A6541300410DFF /* ControllersView.swift in Sources */,
 				8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */,
 				8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */,
+				8E1E217E25A8EC220058D04B /* ControllerBox.swift in Sources */,
 				8E0E519D25A6620700410DFF /* ControllerInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

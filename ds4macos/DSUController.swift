@@ -10,11 +10,12 @@ import GameController
 class DSUController {
     
     static let GRAVITY: Double = 1.0
+    
     var slot: UInt8 = 0x00
     var model: UInt8 = 0x02 // (with gyro, according to specs)
     var connectionType: UInt8 = 0x02 // 0x01: USB, 0x02: Bluetooth
     var battery: UInt8 = 0x05
-    static let macAddress: [UInt8] = [0xFA, 0xCE, 0xB0, 0x0C, 0x00, 0x00]
+    var macAddress: [UInt8] = [0xFA, 0xCE, 0xB0, 0x0C, 0x00, 0x00]
     
     var buttons1: UInt8 = 0x00
     var buttons2: UInt8 = 0x00
@@ -64,69 +65,60 @@ class DSUController {
     var gyroY: [UInt8] = [0x00, 0x00, 0x00, 0x00]
     var gyroZ: [UInt8] = [0x00, 0x00, 0x00, 0x00]
     
-    var counter: UInt32 = 0x00000000
+    var prevMotion: GCMotion?
+    var controllerService: ControllerService?
+    var gameController: GCController?
     
-    
-    init(gameController: GCController, slot: UInt8, counter: UInt32) {
+    init(controllerService: ControllerService, gameController: GCController, slot: UInt8) {
+        self.controllerService = controllerService
+        self.gameController = gameController
+        
+        self.gameController!.extendedGamepad!.valueChangedHandler = inputValueChange
+        self.gameController!.motion!.sensorsActive = true
+        self.gameController!.motion!.valueChangedHandler = motionValueChange
+        print("Motion Sensor Enabled: \(self.gameController!.motion!.sensorsActive)")
+        
         self.slot = slot
-        self.counter = counter
-        
+        self.macAddress[5] = self.slot
+        self.updateControllerVariables()
+    }
+    
+    func inputValueChange(gamePad: GCExtendedGamepad, element: GCControllerElement) {
+        self.updateControllerVariables()
+        self.controllerService?.reportController(dsuController: self)
+    }
+    
+    func motionValueChange(motion: GCMotion) {
+        self.updateControllerVariables()
+        self.controllerService?.reportController(dsuController: self)
+        self.prevMotion = motion
+    }
+    
+    func updateControllerVariables() {
         // BUTTONS
-        let gamePad = gameController.extendedGamepad!
+        let gamePad = self.gameController!.extendedGamepad!
         
-        if gamePad.buttonOptions!.isPressed { // SHARE BUTTON
-            buttons1 |= 0x01
-        }
-        if gamePad.leftThumbstickButton!.isPressed { // L3
-            buttons1 |= 0x01 << 1
-        }
-        if gamePad.rightThumbstickButton!.isPressed { // L3
-            buttons1 |= 0x01 << 2
-        }
-        if gamePad.buttonMenu.isPressed { // OPTIONS BUTTON
-            buttons1 |= 0x01 << 3
-        }
-        if gamePad.dpad.up.isPressed {
-            buttons1 |= 0x01 << 4
-        }
-        if gamePad.dpad.right.isPressed {
-            buttons1 |= 0x01 << 5
-        }
-        if gamePad.dpad.down.isPressed {
-            buttons1 |= 0x01 << 6
-        }
-        if gamePad.dpad.left.isPressed {
-            buttons1 |= 0x01 << 7
-        }
+        buttons1 = 0x00
+        buttons1 |= gamePad.buttonOptions!.isPressed ?          0x01      : 0x00 // SHARE BUTTON
+        buttons1 |= gamePad.leftThumbstickButton!.isPressed ?   0x01 << 1 : 0x00 // L3
+        buttons1 |= gamePad.rightThumbstickButton!.isPressed ?  0x01 << 2 : 0x00 // R3
+        buttons1 |= gamePad.buttonMenu.isPressed ?              0x01 << 3 : 0x00 // OPTIONS BUTTON
+        buttons1 |= gamePad.dpad.up.isPressed ?                 0x01 << 4 : 0x00
+        buttons1 |= gamePad.dpad.right.isPressed ?              0x01 << 5 : 0x00
+        buttons1 |= gamePad.dpad.down.isPressed ?               0x01 << 6 : 0x00
+        buttons1 |= gamePad.dpad.left.isPressed ?               0x01 << 7 : 0x00
         
-        if gamePad.leftTrigger.isPressed {
-            buttons2 |= 0x01
-        }
-        if gamePad.rightTrigger.isPressed {
-            buttons2 |= 0x01 << 1
-        }
-        if gamePad.leftShoulder.isPressed {
-            buttons2 |= 0x01 << 2
-        }
-        if gamePad.rightShoulder.isPressed {
-            buttons2 |= 0x01 << 3
-        }
-        if gamePad.buttonX.isPressed {
-            buttons2 |= 0x01 << 4
-        }
-        if gamePad.buttonA.isPressed {
-            buttons2 |= 0x01 << 5
-        }
-        if gamePad.buttonB.isPressed {
-            buttons2 |= 0x01 << 6
-        }
-        if gamePad.buttonX.isPressed {
-            buttons2 |= 0x01 << 7
-        }
+        buttons2 = 0x00
+        buttons2 |= gamePad.leftTrigger.isPressed ?     0x01      : 0x00 // L2
+        buttons2 |= gamePad.rightTrigger.isPressed ?    0x01 << 1 : 0x00 // R2
+        buttons2 |= gamePad.leftShoulder.isPressed ?    0x01 << 2 : 0x00 // L1
+        buttons2 |= gamePad.rightShoulder.isPressed ?   0x01 << 3 : 0x00 // R1
+        buttons2 |= gamePad.buttonX.isPressed ?         0x01 << 4 : 0x00
+        buttons2 |= gamePad.buttonA.isPressed ?         0x01 << 5 : 0x00
+        buttons2 |= gamePad.buttonB.isPressed ?         0x01 << 6 : 0x00
+        buttons2 |= gamePad.buttonX.isPressed ?         0x01 << 7 : 0x00
         
-        if gamePad.buttonHome!.isPressed { // PS BUTTON
-            psButton = 0xFF
-        }
+        psButton = gamePad.buttonHome!.isPressed ?      0xFF      : 0x00 // PS
         
         leftStickXplusRightward = getUInt8fromFloat(num: gamePad.leftThumbstick.xAxis.value)
         leftStickYplusUpward = getUInt8fromFloat(num: gamePad.leftThumbstick.yAxis.value)
@@ -155,17 +147,17 @@ class DSUController {
         // MOTION
         timeStamp = UInt64(Date.init().timeIntervalSince1970 * 1000000)
         
-        let motion = gameController.motion!
-        
-        // acceleration
-        accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
-        accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
-        accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
-        
-        // gyroscope
-        gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))
-        gyroY = getUInt8arrayFromDouble(num: -self.radiansToDegree(num: motion.rotationRate.z))
-        gyroZ = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.y))
+        if let motion = self.gameController?.motion! {
+            // acceleration
+            accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
+            accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
+            accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
+            
+            // gyroscope
+            gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))
+            gyroY = getUInt8arrayFromDouble(num: -self.radiansToDegree(num: motion.rotationRate.z))
+            gyroZ = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.y))
+        }
     }
     
     private func getUInt8fromFloat(num: Float) -> UInt8 {
@@ -197,10 +189,9 @@ class DSUController {
         ]
     }
     
-    func getDataPacket() -> [UInt8] {
-        let macAddress = DSUController.macAddress
+    func getDataPacket(counter: UInt32) -> [UInt8] {
         var packet: [UInt8] = [
-            slot,   // Only SLOT 0 for now
+            slot,
             0x02,
             model,
             0x02,
@@ -254,9 +245,8 @@ class DSUController {
     }
     
     func getInfoPacket() -> [UInt8] {
-        let macAddress = DSUController.macAddress
         let packet: [UInt8] = [
-            slot,   // Only SLOT 0 for now
+            slot,
             0x02,
             model,
             connectionType,

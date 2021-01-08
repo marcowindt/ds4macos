@@ -36,10 +36,10 @@ class DSUServer: ObservableObject {
         do {
             self.server = try NWListener(using: .udp, on: portUDP)
             
-            self.server?.stateUpdateHandler = self.serverStateUpdateHandler
-            self.server?.newConnectionHandler = self.serverNewConnectionHandler
+            self.server!.stateUpdateHandler = self.serverStateUpdateHandler
+            self.server!.newConnectionHandler = self.serverNewConnectionHandler
             
-            self.server?.start(queue: .global())
+            self.server!.start(queue: backgroundQueueUdpListener)
             self.isRunning = true
         } catch {
             self.isRunning = false
@@ -136,27 +136,36 @@ class DSUServer: ObservableObject {
     }
     
     func handleIncomingDataRequest(connection: NWConnection, data: [UInt8]) {
+        print("Incoming data request packet: \(Data(data).hexEncodedString())")
+        let slotBased = data[20]
+        let reqSlot = data[21]
         let flags = data[24]
         let regId = data[25]
         
         if flags == 0 && regId == 0 {
             if self.controllerService != nil {
-                let dsuController = DSUController(gameController: self.controllerService!.gameController!, slot: 0, counter: 0)
-                report(controller: dsuController)
+                if slotBased == 0x01 {
+                    if self.controllerService!.connectedControllers[Int(reqSlot)] != nil {
+                        report(controller: self.controllerService!.connectedControllers[Int(reqSlot)]!)
+                    }
+                } else {
+                    for dsuController in self.controllerService!.connectedControllers {
+                        report(controller: dsuController.value)
+                    }
+                }
             }
         }
     }
     
     func getPortsPacket(index: UInt8) -> [UInt8] {
-        if self.controllerService != nil && index == 0 {
-            let dsuController = DSUController(gameController: self.controllerService!.gameController!, slot: 0, counter: 0)
-            return DSUMessage.make(type: DSUMessage.TYPE_PORTS, data: dsuController.getInfoPacket())
+        if self.controllerService != nil && index <= self.controllerService!.numberOfControllersConnected && self.controllerService!.connectedControllers[Int(index)] != nil {
+            return DSUMessage.make(type: DSUMessage.TYPE_PORTS, data: self.controllerService!.connectedControllers[Int(index)]!.getInfoPacket())
         }
         return DSUMessage.make(type: DSUMessage.TYPE_PORTS, data: DSUController.defaultInfoPacket(index: index))
     }
     
     func report(controller: DSUController) {
-        self.sendDataToClients(data: Data(controller.getDataPacket()))
+        self.sendDataToClients(data: Data(controller.getDataPacket(counter: self.counter)))
         self.counter += 1
     }
     
@@ -210,4 +219,16 @@ class DSUServer: ObservableObject {
 //        return address ?? ""
 //    }
     
+}
+
+extension Data {
+    struct HexEncodingOptions: OptionSet {
+        let rawValue: Int
+        static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
+    }
+
+    func hexEncodedString(options: HexEncodingOptions = []) -> String {
+        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
+        return map { String(format: format, $0) }.joined()
+    }
 }

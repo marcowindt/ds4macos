@@ -8,14 +8,14 @@ import GameController
 
 struct ContentView: View {
     @ObservedObject var gameControllerInfo: ControllerInfo
-    @State var selection: String? = "info"
+    @State var selection: String? = "controllers"
     
     var body: some View {
         NavigationView {
             List(selection: self.$selection) {
-                Label("Info", systemImage: "info")
-                    .tag("info")
-                Label("Server", systemImage: "largecircle.fill.circle")
+                Label("Controllers", systemImage: "gamecontroller")
+                    .tag("controllers")
+                Label("Server", systemImage: "network")
                     .tag("server")
                 
                 Divider()
@@ -31,7 +31,7 @@ struct ContentView: View {
             } else if self.selection == "settings" {
                 SettingsView()
             } else {
-                InfoView()
+                ControllersView()
             }
             
         }
