@@ -18,7 +18,7 @@ class DSUServer: ObservableObject {
     var backgroundQueueUdpListener = DispatchQueue(label: "udp-lis.bg.queue", attributes: [])
     var backgroundQueueUdpConnection = DispatchQueue(label: "udp-con.bg.queue", attributes: [])
     
-    var clients = [NWConnection]()
+    var clients: [Int: NWConnection] = [:]
     
     var counter: UInt32 = 0
     
@@ -89,7 +89,6 @@ class DSUServer: ObservableObject {
                 print("Connection: ⏰ waiting: \(error)")
             case .ready:
                 print("Connection: ✅ ready")
-                self.clients.append(newConnection)
                 self.handleIncoming(newConnection)
             case .failed(let error):
                 print("Connection: 🔥 failed: \(error)")
@@ -98,9 +97,10 @@ class DSUServer: ObservableObject {
             default:
                 break
             }
+            
         }
 
-        newConnection.start(queue: .global())
+        newConnection.start(queue: self.backgroundQueueUdpConnection)
     }
     
     func handleIncoming(_ incomingConnection: NWConnection) {
@@ -110,15 +110,19 @@ class DSUServer: ObservableObject {
                 let data = [UInt8](data)
                 let type = [UInt8](data[16...19])
                 
-                if type == DSUMessage.TYPE_PORTS {
+                switch type {
+                case DSUMessage.TYPE_PORTS:
                     print("Received: Message Type: PORTS")
                     self.handleIncomingPortsRequest(connection: incomingConnection, data: data)
-                } else if type == DSUMessage.TYPE_DATA {
+                    break
+                case DSUMessage.TYPE_DATA:
                     print("Received: Message Type: DATA")
                     self.handleIncomingDataRequest(connection: incomingConnection, data: data)
-                } else if type == DSUMessage.TYPE_VERSION {
+                    break
+                case DSUMessage.TYPE_VERSION:
                     print("Message Type: VERSION")
-                } else {
+                    break
+                default:
                     print("Uknown message type")
                 }
             }
@@ -127,7 +131,7 @@ class DSUServer: ObservableObject {
     }
     
     func handleIncomingPortsRequest(connection: NWConnection, data: [UInt8]) {
-        let requestsCount = data[20]
+        let requestsCount = data[20] // aka, the number of slots the client asked for
         
         for i in 0..<requestsCount {
             let dataMessage = self.getPortsPacket(index: i)
@@ -138,15 +142,19 @@ class DSUServer: ObservableObject {
     func handleIncomingDataRequest(connection: NWConnection, data: [UInt8]) {
         print("Incoming data request packet: \(Data(data).hexEncodedString())")
         let slotBased = data[20]
-        let reqSlot = data[21]
+        let reqSlot = Int(data[21])
         let flags = data[24]
         let regId = data[25]
+        
+        if !self.clients.keys.contains(reqSlot) {
+            self.clients[reqSlot] = connection
+        }
         
         if flags == 0 && regId == 0 {
             if self.controllerService != nil {
                 if slotBased == 0x01 {
-                    if self.controllerService!.connectedControllers[Int(reqSlot)] != nil {
-                        report(controller: self.controllerService!.connectedControllers[Int(reqSlot)]!)
+                    if self.controllerService!.connectedControllers[reqSlot] != nil {
+                        report(controller: self.controllerService!.connectedControllers[reqSlot]!)
                     }
                 } else {
                     for dsuController in self.controllerService!.connectedControllers {
@@ -165,13 +173,17 @@ class DSUServer: ObservableObject {
     }
     
     func report(controller: DSUController) {
-        self.sendDataToClients(data: Data(controller.getDataPacket(counter: self.counter)))
+        if self.clients.keys.contains(Int(controller.slot)) {
+            self.sendDataToClient(client: self.clients[Int(controller.slot)]!, data: Data(controller.getDataPacket(counter: self.counter)))
+        } else {
+            self.sendDataToClients(data: Data(controller.getDataPacket(counter: self.counter)))
+        }
         self.counter += 1
     }
     
     func sendDataToClients(data: Data) {
         for client in self.clients {
-            self.sendDataToClient(client: client, data: data)
+            self.sendDataToClient(client: client.value, data: data)
         }
     }
     
@@ -180,9 +192,10 @@ class DSUServer: ObservableObject {
             client.send(content: data, completion: NWConnection.SendCompletion.contentProcessed({ (error: NWError?) in
                 if error != nil {
                     // Client disconnect?
-                    self.clients.removeAll { (connection) -> Bool in
-                        return connection.endpoint.hashValue == client.endpoint.hashValue
+                    let clientKey = self.clients.firstIndex { (key: Int, value: NWConnection) -> Bool in
+                        return client.endpoint.hashValue == value.endpoint.hashValue
                     }
+                    self.clients.remove(at: clientKey!)
                     client.cancel()
                     print("Got an error sending controller data: \(error!), \(self.clients.count)")
                 }
