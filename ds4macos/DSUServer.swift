@@ -18,7 +18,8 @@ class DSUServer: ObservableObject {
     var backgroundQueueUdpListener = DispatchQueue(label: "udp-lis.bg.queue", attributes: [])
     var backgroundQueueUdpConnection = DispatchQueue(label: "udp-con.bg.queue", attributes: [])
     
-    var clients: [Int: NWConnection] = [:]
+    @Published var clientsViewModel: ClientsViewModel = ClientsViewModel()
+    var clients: [String: Client] = [:]
     
     var counter: UInt32 = 0
     
@@ -50,6 +51,9 @@ class DSUServer: ObservableObject {
     func stopServer() {
         self.server?.cancel()
         self.server = nil
+        for (_, client) in self.clients {
+            client.close()
+        }
         self.isRunning = false
     }
     
@@ -135,7 +139,13 @@ class DSUServer: ObservableObject {
         
         for i in 0..<requestsCount {
             let dataMessage = self.getPortsPacket(index: i)
-            self.sendDataToClient(client: connection, data: Data(dataMessage))
+            connection.send(content: Data(dataMessage), completion: NWConnection.SendCompletion.contentProcessed({ (error: NWError?) in
+                if error != nil {
+                    // Client disconnect?
+                    connection.cancel()
+                    print("Got an error sending ports data: \(error!)")
+                }
+            }))
         }
     }
     
@@ -146,11 +156,25 @@ class DSUServer: ObservableObject {
         let flags = data[24]
         let regId = data[25]
         
-        if !self.clients.keys.contains(reqSlot) {
-            self.clients[reqSlot] = connection
-        }
-        
         if flags == 0 && regId == 0 {
+            switch connection.endpoint {
+            case .hostPort(let host, let port):
+                let clientAddress = "\(host):\(port)"
+                if self.clients[clientAddress] == nil {
+                    print("New client connection: \(clientAddress)")
+                    self.clients[clientAddress] = Client(server: self, connection: connection, address: clientAddress)
+                    self.clients[clientAddress]!.setSlot(slot: reqSlot)
+                    self.updateClientsViewModel()
+                } else {
+                    print("Refresh existing connection: \(clientAddress)")
+                    self.clients[clientAddress]!.setSlot(slot: reqSlot)
+                    self.clients[clientAddress]!.setTimeStampOnDataRequest()
+                }
+                break
+            default:
+                return
+            }
+        
             if self.controllerService != nil {
                 if slotBased == 0x01 {
                     if self.controllerService!.connectedControllers[reqSlot] != nil {
@@ -173,33 +197,17 @@ class DSUServer: ObservableObject {
     }
     
     func report(controller: DSUController) {
-        if self.clients.keys.contains(Int(controller.slot)) {
-            self.sendDataToClient(client: self.clients[Int(controller.slot)]!, data: Data(controller.getDataPacket(counter: self.counter)))
-        } else {
-            self.sendDataToClients(data: Data(controller.getDataPacket(counter: self.counter)))
+        for (_, client) in self.clients {
+            if client.slots[Int(controller.slot)] {
+                client.send(dataMessage: Data(controller.getDataPacket(counter: self.counter)))
+            }
         }
         self.counter += 1
     }
     
-    func sendDataToClients(data: Data) {
-        for client in self.clients {
-            self.sendDataToClient(client: client.value, data: data)
-        }
-    }
-    
-    func sendDataToClient(client: NWConnection, data: Data) {
-        if self.isRunning {
-            client.send(content: data, completion: NWConnection.SendCompletion.contentProcessed({ (error: NWError?) in
-                if error != nil {
-                    // Client disconnect?
-                    let clientKey = self.clients.firstIndex { (key: Int, value: NWConnection) -> Bool in
-                        return client.endpoint.hashValue == value.endpoint.hashValue
-                    }
-                    self.clients.remove(at: clientKey!)
-                    client.cancel()
-                    print("Got an error sending controller data: \(error!), \(self.clients.count)")
-                }
-            }))
+    func updateClientsViewModel() {
+        DispatchQueue.main.async {
+            self.clientsViewModel.clients = self.clients
         }
     }
     

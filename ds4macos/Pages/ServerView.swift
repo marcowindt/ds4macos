@@ -9,6 +9,7 @@ import Combine
 
 struct ServerView: View {
     @EnvironmentObject var server: DSUServer
+    @EnvironmentObject var clientsViewModel: ClientsViewModel
     @State var portNum: String = "26760"
     @State var ipAddress: String = "127.0.0.1"
     @State private var showAlert: Bool = false
@@ -46,6 +47,17 @@ struct ServerView: View {
                         }
                     }.padding(10)
                 }
+                
+                if self.clientsViewModel.clients.count > 0 {
+                    Divider()
+                    Text("\(self.clientsViewModel.clients.count) client(s) connected")
+                    VStack {
+                        ForEach(self.clientsViewModel.clients.keys.sorted(by: >), id: \.self) { (key: String) in
+                            ConnectedClient(client: self.clientsViewModel.clients[key]!)
+                        }
+                    }
+                }
+                
                 Divider()
                 
                 if self.server.isRunning {

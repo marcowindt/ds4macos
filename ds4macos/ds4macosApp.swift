@@ -14,7 +14,10 @@ class ds4macosApp: App {
             ContentView(gameControllerInfo: self.controllerService!.gameControllerInfo, selection: "controller")
                 .onDisappear(perform: {
                     exit(0)
-                }).environmentObject(self.dsuServer!).environmentObject(self.controllerService!)
+                })
+                .environmentObject(self.dsuServer!)
+                .environmentObject(self.controllerService!)
+                .environmentObject(self.dsuServer!.clientsViewModel)
         }
     }
     

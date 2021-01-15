@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E03944725AF674F00F1DA1E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E03944625AF674F00F1DA1E /* Client.swift */; };
 		8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */; };
 		8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06487125A3BF0B00577AF8 /* ContentView.swift */; };
 		8E06487425A3BF0D00577AF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487325A3BF0D00577AF8 /* Assets.xcassets */; };
@@ -20,6 +21,8 @@
 		8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E51C825A763D300410DFF /* ControllerService.swift */; };
 		8E1E217E25A8EC220058D04B /* ControllerBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E217D25A8EC220058D04B /* ControllerBox.swift */; };
 		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
+		8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */; };
+		8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E03944625AF674F00F1DA1E /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8E06486C25A3BF0B00577AF8 /* ds4macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ds4macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosApp.swift; sourceTree = "<group>"; };
 		8E06487125A3BF0B00577AF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 		8E0E51C825A763D300410DFF /* ControllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerService.swift; sourceTree = "<group>"; };
 		8E1E217D25A8EC220058D04B /* ControllerBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerBox.swift; sourceTree = "<group>"; };
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
+		8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
+		8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,8 @@
 				8E0E519C25A6620700410DFF /* ControllerInfo.swift */,
 				8E0E51C325A7620B00410DFF /* DSUServer.swift */,
 				8E0E51C825A763D300410DFF /* ControllerService.swift */,
+				8E03944625AF674F00F1DA1E /* Client.swift */,
+				8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */,
 			);
 			path = ds4macos;
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 		8E0E518025A653E400410DFF /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				8E93D71B25B23A8400BEAFB6 /* Client */,
 				8E1E217C25A8EC120058D04B /* Controller */,
 				8E0E518125A6540200410DFF /* SettingsView.swift */,
 				8E0E518625A6541300410DFF /* ControllersView.swift */,
@@ -147,6 +156,14 @@
 				8E1E217D25A8EC220058D04B /* ControllerBox.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8E93D71B25B23A8400BEAFB6 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,8 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */,
 				8E0E518225A6540200410DFF /* SettingsView.swift in Sources */,
+				8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */,
 				8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */,
+				8E03944725AF674F00F1DA1E /* Client.swift in Sources */,
 				8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */,
 				8E0E518C25A6542000410DFF /* ServerView.swift in Sources */,
 				8E0E51C425A7620B00410DFF /* DSUServer.swift in Sources */,
