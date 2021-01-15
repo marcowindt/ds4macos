@@ -13,7 +13,7 @@ class ds4macosApp: App {
         WindowGroup {
             ContentView(gameControllerInfo: self.controllerService!.gameControllerInfo, selection: "controller")
                 .onDisappear(perform: {
-                    exit(0)
+                    self.shutdown()
                 })
                 .environmentObject(self.dsuServer!)
                 .environmentObject(self.controllerService!)
@@ -29,6 +29,11 @@ class ds4macosApp: App {
         self.controllerService = ControllerService(server: self.dsuServer!)
         self.dsuServer!.setControllerService(controllerService: self.controllerService!)
         self.dsuServer!.startServer()
+    }
+    
+    func shutdown() {
+        self.dsuServer?.stopServer()
+        exit(0)
     }
     
 }
