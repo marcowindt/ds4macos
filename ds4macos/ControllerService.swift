@@ -9,6 +9,7 @@ import Foundation
 import GameController
 import SwiftUI
 
+@available(OSX 10.15, *)
 class ControllerService: ObservableObject {
     
     let maximumControllerCount: Int

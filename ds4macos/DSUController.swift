@@ -7,6 +7,7 @@ import Foundation
 import GameController
 
 
+@available(OSX 11.0, *)
 class DSUController {
     
     static let GRAVITY: Double = 1.0

@@ -6,6 +6,7 @@
 import Foundation
 import SwiftUI
 
+@available(OSX 11.0, *)
 struct ControllerBox: View {
     var dsuController: DSUController
 
