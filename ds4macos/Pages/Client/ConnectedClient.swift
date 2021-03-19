@@ -20,7 +20,7 @@ struct ConnectedClient: View {
                 Text("Slots")
                 
                 ForEach( Array(zip(self.client.slots.indices, self.client.slots)), id: \.0) { index, item in
-                    Image(systemName: "\(index).square\(item ? ".fill" : "")").font(.title)
+                    Text("\(index)").font(item ? .title : .none)
                 }
                 
             }.padding(EdgeInsets(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0))

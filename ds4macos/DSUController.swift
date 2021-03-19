@@ -7,7 +7,7 @@ import Foundation
 import GameController
 
 
-@available(OSX 11.0, *)
+//@available(OSX 11.0, *)
 class DSUController {
     
     static let GRAVITY: Double = 1.0
@@ -73,11 +73,14 @@ class DSUController {
     init(controllerService: ControllerService, gameController: GCController, slot: UInt8) {
         self.controllerService = controllerService
         self.gameController = gameController
-        
         self.gameController!.extendedGamepad!.valueChangedHandler = inputValueChange
-        self.gameController!.motion!.sensorsActive = true
         self.gameController!.motion!.valueChangedHandler = motionValueChange
-        print("Motion Sensor Enabled: \(self.gameController!.motion!.sensorsActive)")
+        if #available(OSX 11.0, *) {
+            self.gameController!.motion!.sensorsActive = true
+            print("Motion Sensor Enabled: \(self.gameController!.motion!.sensorsActive)")
+        } else {
+            // Fallback on earlier versions
+        }
         
         self.slot = slot
         self.macAddress[5] = self.slot
@@ -119,7 +122,9 @@ class DSUController {
         buttons2 |= gamePad.buttonB.isPressed ?         0x01 << 6 : 0x00
         buttons2 |= gamePad.buttonX.isPressed ?         0x01 << 7 : 0x00
         
-        psButton = gamePad.buttonHome!.isPressed ?      0xFF      : 0x00 // PS
+        if #available(OSX 11.0, *) {
+            psButton = gamePad.buttonHome!.isPressed ?      0xFF      : 0x00     // PS
+        }
         
         leftStickXplusRightward = getUInt8fromFloat(num: gamePad.leftThumbstick.xAxis.value)
         leftStickYplusUpward = getUInt8fromFloat(num: gamePad.leftThumbstick.yAxis.value)
@@ -150,9 +155,15 @@ class DSUController {
         
         if let motion = self.gameController?.motion! {
             // acceleration
-            accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
-            accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
-            accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
+            if #available(OSX 11.0, *) {
+                accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
+                accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
+                accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
+            } else {
+                accX = getUInt8arrayFromDouble(num: motion.gravity.x)
+                accY = getUInt8arrayFromDouble(num: motion.gravity.z)
+                accZ = getUInt8arrayFromDouble(num: motion.gravity.y)
+            }
             
             // gyroscope
             gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))

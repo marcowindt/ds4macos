@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 
-@available(OSX 11.0, *)
+
 struct ControllerBox: View {
     var dsuController: DSUController
 
@@ -20,7 +20,7 @@ struct ControllerBox: View {
                 }
                 Spacer()
                 Text("Slot")
-                Image(systemName: "\(dsuController.slot).square.fill").font(.title)
+                Text("\(dsuController.slot)").font(.title)
             }.padding(10)
         }
     }

@@ -13,15 +13,21 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(selection: self.$selection) {
-                Label("Controllers", systemImage: "gamecontroller")
-                    .tag("controllers")
-                Label("Server", systemImage: "network")
-                    .tag("server")
-                
-                Divider()
-                
-                Label("Settings", systemImage: "gear")
-                    .tag("settings")
+                NavigationLink(
+                    destination: ControllersView()
+                ) {
+                    Text("🎮 Controllers")
+                }.tag("controllers")
+                NavigationLink(
+                    destination: ServerView()
+                ) {
+                    Text("🌐 Server")
+                }.tag("server")
+                NavigationLink(
+                    destination: SettingsView()
+                ) {
+                    Text("⚙️ Settings")
+                }.tag("settings")
             }
             .listStyle(SidebarListStyle())
             .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, maxHeight: .infinity)

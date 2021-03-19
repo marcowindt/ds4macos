@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E03944725AF674F00F1DA1E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E03944625AF674F00F1DA1E /* Client.swift */; };
-		8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */; };
+		8E06487025A3BF0B00577AF8 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06486F25A3BF0B00577AF8 /* AppView.swift */; };
 		8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06487125A3BF0B00577AF8 /* ContentView.swift */; };
 		8E06487425A3BF0D00577AF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487325A3BF0D00577AF8 /* Assets.xcassets */; };
 		8E06487725A3BF0D00577AF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E06487625A3BF0D00577AF8 /* Preview Assets.xcassets */; };
@@ -19,7 +19,9 @@
 		8E0E519D25A6620700410DFF /* ControllerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E519C25A6620700410DFF /* ControllerInfo.swift */; };
 		8E0E51C425A7620B00410DFF /* DSUServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E51C325A7620B00410DFF /* DSUServer.swift */; };
 		8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E51C825A763D300410DFF /* ControllerService.swift */; };
+		8E1C55C026054AE00036AF7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E1C55BF26054AE00036AF7B /* Main.storyboard */; };
 		8E1E217E25A8EC220058D04B /* ControllerBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E217D25A8EC220058D04B /* ControllerBox.swift */; };
+		8E69047A260541C6004B69BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E690479260541C6004B69BD /* AppDelegate.swift */; };
 		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
 		8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */; };
 		8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */; };
@@ -45,7 +47,7 @@
 /* Begin PBXFileReference section */
 		8E03944625AF674F00F1DA1E /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8E06486C25A3BF0B00577AF8 /* ds4macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ds4macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosApp.swift; sourceTree = "<group>"; };
+		8E06486F25A3BF0B00577AF8 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		8E06487125A3BF0B00577AF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E06487325A3BF0D00577AF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E06487625A3BF0D00577AF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -60,7 +62,9 @@
 		8E0E519C25A6620700410DFF /* ControllerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerInfo.swift; sourceTree = "<group>"; };
 		8E0E51C325A7620B00410DFF /* DSUServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUServer.swift; sourceTree = "<group>"; };
 		8E0E51C825A763D300410DFF /* ControllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerService.swift; sourceTree = "<group>"; };
+		8E1C55BF26054AE00036AF7B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8E1E217D25A8EC220058D04B /* ControllerBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerBox.swift; sourceTree = "<group>"; };
+		8E690479260541C6004B69BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 		8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
@@ -113,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				8E0E518025A653E400410DFF /* Pages */,
-				8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */,
+				8E06486F25A3BF0B00577AF8 /* AppView.swift */,
 				8E06487125A3BF0B00577AF8 /* ContentView.swift */,
 				8E06487325A3BF0D00577AF8 /* Assets.xcassets */,
 				8E06487825A3BF0D00577AF8 /* Info.plist */,
@@ -126,6 +130,8 @@
 				8E0E51C825A763D300410DFF /* ControllerService.swift */,
 				8E03944625AF674F00F1DA1E /* Client.swift */,
 				8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */,
+				8E690479260541C6004B69BD /* AppDelegate.swift */,
+				8E1C55BF26054AE00036AF7B /* Main.storyboard */,
 			);
 			path = ds4macos;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			files = (
 				8E06487725A3BF0D00577AF8 /* Preview Assets.xcassets in Resources */,
 				8E06487425A3BF0D00577AF8 /* Assets.xcassets in Resources */,
+				8E1C55C026054AE00036AF7B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +305,7 @@
 				8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */,
 				8E0E518225A6540200410DFF /* SettingsView.swift in Sources */,
 				8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */,
+				8E69047A260541C6004B69BD /* AppDelegate.swift in Sources */,
 				8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */,
 				8E03944725AF674F00F1DA1E /* Client.swift in Sources */,
 				8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */,
@@ -306,7 +314,7 @@
 				8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */,
 				8E0E518725A6541300410DFF /* ControllersView.swift in Sources */,
 				8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */,
-				8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */,
+				8E06487025A3BF0B00577AF8 /* AppView.swift in Sources */,
 				8E1E217E25A8EC220058D04B /* ControllerBox.swift in Sources */,
 				8E0E519D25A6620700410DFF /* ControllerInfo.swift in Sources */,
 			);
@@ -393,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -448,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -474,7 +482,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nl.dijkitech.ds4macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,7 +508,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nl.dijkitech.ds4macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
