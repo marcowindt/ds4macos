@@ -74,18 +74,43 @@ class DSUController {
         self.controllerService = controllerService
         self.gameController = gameController
         
-        self.gameController!.extendedGamepad!.valueChangedHandler = inputValueChange
-        self.gameController!.motion!.sensorsActive = true
-        self.gameController!.motion!.valueChangedHandler = motionValueChange
-        print("Motion Sensor Enabled: \(self.gameController!.motion!.sensorsActive)")
+        print("Connect controller!")
+        
+        if (self.gameController!.extendedGamepad != nil) {
+            print("Extended Gamepad: \(self.gameController!.extendedGamepad!.allButtons)")
+            self.gameController!.extendedGamepad!.valueChangedHandler = inputValueChange
+        } else if (self.gameController!.microGamepad != nil) {
+            print("Micro Gamepad: \(self.gameController!.microGamepad!.allButtons)")
+            self.gameController!.microGamepad!.valueChangedHandler = microInputValueChange
+        }
+        
+        if (self.gameController!.motion != nil) {
+            self.gameController!.motion!.sensorsActive = true
+            self.gameController!.motion!.valueChangedHandler = motionValueChange
+            print("Motion Sensor Enabled: \(self.gameController!.motion!.sensorsActive)")
+        } else {
+            print("\(self.gameController!.physicalInputProfile.allElements)")
+        }
         
         self.slot = slot
         self.macAddress[5] = self.slot
-        self.updateControllerVariables()
+        
+        if (self.gameController!.extendedGamepad != nil) {
+            print("Update extended gamepad controller variables")
+            self.updateControllerVariables()
+        } else if (self.gameController!.microGamepad != nil) {
+            print("Update micro gamepad controller variables")
+            self.updateMicroControllerVariables()
+        }
     }
     
     func inputValueChange(gamePad: GCExtendedGamepad, element: GCControllerElement) {
         self.updateControllerVariables()
+        self.controllerService?.reportController(dsuController: self)
+    }
+    
+    func microInputValueChange(gamePad: GCMicroGamepad, element: GCControllerElement) {
+        self.updateMicroControllerVariables()
         self.controllerService?.reportController(dsuController: self)
     }
     
@@ -100,26 +125,34 @@ class DSUController {
         let gamePad = self.gameController!.extendedGamepad!
         
         buttons1 = 0x00
-        buttons1 |= gamePad.buttonOptions!.isPressed ?          0x01      : 0x00 // SHARE BUTTON
-        buttons1 |= gamePad.leftThumbstickButton!.isPressed ?   0x01 << 1 : 0x00 // L3
-        buttons1 |= gamePad.rightThumbstickButton!.isPressed ?  0x01 << 2 : 0x00 // R3
-        buttons1 |= gamePad.buttonMenu.isPressed ?              0x01 << 3 : 0x00 // OPTIONS BUTTON
-        buttons1 |= gamePad.dpad.up.isPressed ?                 0x01 << 4 : 0x00
-        buttons1 |= gamePad.dpad.right.isPressed ?              0x01 << 5 : 0x00
-        buttons1 |= gamePad.dpad.down.isPressed ?               0x01 << 6 : 0x00
-        buttons1 |= gamePad.dpad.left.isPressed ?               0x01 << 7 : 0x00
+        if gamePad.buttonOptions != nil {
+            buttons1 |= gamePad.buttonOptions!.isPressed ?          0x01      : 0x00 // SHARE BUTTON
+        }
+        if gamePad.leftThumbstickButton != nil {
+            buttons1 |= gamePad.leftThumbstickButton!.isPressed ?   0x01 << 1 : 0x00 // L3
+        }
+        if gamePad.rightThumbstickButton != nil {
+            buttons1 |= gamePad.rightThumbstickButton!.isPressed ?  0x01 << 2 : 0x00 // R3
+        }
+        buttons1 |= gamePad.buttonMenu.isPressed ?                  0x01 << 3 : 0x00 // OPTIONS BUTTON
+        buttons1 |= gamePad.dpad.up.isPressed ?                     0x01 << 4 : 0x00
+        buttons1 |= gamePad.dpad.right.isPressed ?                  0x01 << 5 : 0x00
+        buttons1 |= gamePad.dpad.down.isPressed ?                   0x01 << 6 : 0x00
+        buttons1 |= gamePad.dpad.left.isPressed ?                   0x01 << 7 : 0x00
         
         buttons2 = 0x00
-        buttons2 |= gamePad.leftTrigger.isPressed ?     0x01      : 0x00 // L2
-        buttons2 |= gamePad.rightTrigger.isPressed ?    0x01 << 1 : 0x00 // R2
-        buttons2 |= gamePad.leftShoulder.isPressed ?    0x01 << 2 : 0x00 // L1
-        buttons2 |= gamePad.rightShoulder.isPressed ?   0x01 << 3 : 0x00 // R1
-        buttons2 |= gamePad.buttonX.isPressed ?         0x01 << 4 : 0x00
-        buttons2 |= gamePad.buttonA.isPressed ?         0x01 << 5 : 0x00
-        buttons2 |= gamePad.buttonB.isPressed ?         0x01 << 6 : 0x00
-        buttons2 |= gamePad.buttonX.isPressed ?         0x01 << 7 : 0x00
+        buttons2 |= gamePad.leftTrigger.isPressed ?         0x01      : 0x00 // L2
+        buttons2 |= gamePad.rightTrigger.isPressed ?        0x01 << 1 : 0x00 // R2
+        buttons2 |= gamePad.leftShoulder.isPressed ?        0x01 << 2 : 0x00 // L1
+        buttons2 |= gamePad.rightShoulder.isPressed ?       0x01 << 3 : 0x00 // R1
+        buttons2 |= gamePad.buttonX.isPressed ?             0x01 << 4 : 0x00
+        buttons2 |= gamePad.buttonA.isPressed ?             0x01 << 5 : 0x00
+        buttons2 |= gamePad.buttonB.isPressed ?             0x01 << 6 : 0x00
+        buttons2 |= gamePad.buttonY.isPressed ?             0x01 << 7 : 0x00
         
-        psButton = gamePad.buttonHome!.isPressed ?      0xFF      : 0x00 // PS
+        if gamePad.buttonHome != nil {
+            psButton = gamePad.buttonHome!.isPressed ?      0xFF      : 0x00 // PS
+        }
         
         leftStickXplusRightward = getUInt8fromFloat(num: gamePad.leftThumbstick.xAxis.value)
         leftStickYplusUpward = getUInt8fromFloat(num: gamePad.leftThumbstick.yAxis.value)
@@ -148,7 +181,50 @@ class DSUController {
         // MOTION
         timeStamp = UInt64(Date.init().timeIntervalSince1970 * 1000000)
         
-        if let motion = self.gameController?.motion! {
+        if self.gameController!.motion != nil, let motion = self.gameController?.motion! {
+            // acceleration
+            accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
+            accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
+            accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
+            
+            // gyroscope
+            gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))
+            gyroY = getUInt8arrayFromDouble(num: -self.radiansToDegree(num: motion.rotationRate.z))
+            gyroZ = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.y))
+        }
+    }
+    
+    func updateMicroControllerVariables() {
+        // BUTTONS
+        let gamePad = self.gameController!.microGamepad!
+        
+        buttons1 = 0x00
+        buttons1 |= gamePad.buttonMenu.isPressed ?              0x01 << 3 : 0x00 // OPTIONS BUTTON
+        buttons1 |= gamePad.dpad.up.isPressed ?                 0x01 << 4 : 0x00
+        buttons1 |= gamePad.dpad.right.isPressed ?              0x01 << 5 : 0x00
+        buttons1 |= gamePad.dpad.down.isPressed ?               0x01 << 6 : 0x00
+        buttons1 |= gamePad.dpad.left.isPressed ?               0x01 << 7 : 0x00
+        
+        buttons2 = 0x00
+        buttons2 |= gamePad.buttonX.isPressed ?         0x01 << 4 : 0x00
+        buttons2 |= gamePad.buttonA.isPressed ?         0x01 << 5 : 0x00
+//        buttons2 |= gamePad.buttonB.isPressed ?         0x01 << 6 : 0x00
+//        buttons2 |= gamePad.buttonY.isPressed ?         0x01 << 7 : 0x00
+
+        dpadLeft = UInt8(gamePad.dpad.left.value * 255)
+        dpadDown = UInt8(gamePad.dpad.down.value * 255)
+        dpadRight = UInt8(gamePad.dpad.right.value * 255)
+        dpadUp = UInt8(gamePad.dpad.up.value * 255)
+
+        buttonSquare = UInt8(gamePad.buttonX.value * 255)
+        buttonCross = UInt8(gamePad.buttonA.value * 255)
+        
+        // skipping touchpad for now
+        
+        // MOTION
+        timeStamp = UInt64(Date.init().timeIntervalSince1970 * 1000000)
+        
+        if self.gameController!.motion != nil, let motion = self.gameController?.motion! {
             // acceleration
             accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
             accY = getUInt8arrayFromDouble(num: motion.acceleration.z)

@@ -15,7 +15,7 @@ struct ControllerBox: View {
             HStack {
                 Text("🎮").font(.largeTitle)
                 VStack(alignment: .leading) {
-                    Text(dsuController.gameController!.vendorName!).font(.headline)
+                    Text(dsuController.gameController!.vendorName ?? "?").font(.headline)
                     Text(dsuController.gameController!.productCategory).font(.subheadline)
                 }
                 Spacer()

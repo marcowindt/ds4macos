@@ -61,6 +61,7 @@
 		8E0E51C325A7620B00410DFF /* DSUServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUServer.swift; sourceTree = "<group>"; };
 		8E0E51C825A763D300410DFF /* ControllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerService.swift; sourceTree = "<group>"; };
 		8E1E217D25A8EC220058D04B /* ControllerBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerBox.swift; sourceTree = "<group>"; };
+		8E598734264FEA4200219C16 /* ds4macosRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ds4macosRelease.entitlements; sourceTree = "<group>"; };
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 		8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
@@ -112,6 +113,7 @@
 		8E06486E25A3BF0B00577AF8 /* ds4macos */ = {
 			isa = PBXGroup;
 			children = (
+				8E598734264FEA4200219C16 /* ds4macosRelease.entitlements */,
 				8E0E518025A653E400410DFF /* Pages */,
 				8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */,
 				8E06487125A3BF0B00577AF8 /* ContentView.swift */,
@@ -487,7 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macos.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macosRelease.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

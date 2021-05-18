@@ -63,14 +63,14 @@ class ControllerService: ObservableObject {
     
     func addControllerToSlots(controller: GCController, slot: Int) {
         self.connectedControllers[slot] = DSUController(controllerService: self, gameController: controller, slot: UInt8(slot))
-        self.gameControllerInfo.info = "Connected: [vendor: \(controller.vendorName!), productCategory: \(controller.productCategory)]"
+        self.gameControllerInfo.info = "Connected: [vendor: \(controller.vendorName ?? "?"), productCategory: \(controller.productCategory)]"
         print(self.gameControllerInfo.info)
         self.numberOfControllersConnected += 1
     }
     
     @objc func onControllerDisconnect(_ notification: Notification) {
         let controller = notification.object as! GCController
-        print("Disconnected: [vendor: \(controller.vendorName!), productCategory: \(controller.productCategory)]")
+        print("Disconnected: [vendor: \(controller.vendorName ?? "?"), productCategory: \(controller.productCategory)]")
         self.removeControllerFromSlots(controller: controller)
     }
     
