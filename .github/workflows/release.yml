@@ -58,7 +58,7 @@ jobs:
       - name: "Export & Sign Release Build"
         uses: devbotsxyz/xcode-export-archive@master
         with:
-          export-method: developer
+          export-method: development
 
       #
       # Now send the product to Apple's notarization service and then
