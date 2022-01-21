@@ -57,6 +57,8 @@ jobs:
 
       - name: "Export & Sign Release Build"
         uses: devbotsxyz/xcode-export-archive@master
+        with:
+          export-method: macos-application
 
       #
       # Now send the product to Apple's notarization service and then
@@ -81,7 +83,7 @@ jobs:
       #
 
       - name: Package for Distribution
-        run: ditto -V -c -k --keepParent "ds4macos.app" "ds4macos.zip"
+        run: ditto -V -c -k --keepParent "Export/ds4macos.app" "ds4macos.zip"
 
       - name: Release app
         uses: softprops/action-gh-release@v1
