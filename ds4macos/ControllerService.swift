@@ -25,6 +25,11 @@ class ControllerService: ObservableObject {
     init(server: DSUServer, maximumControllerCount: Int = 4) {
         self.maximumControllerCount = maximumControllerCount
         self.server = server
+        
+        if #available(macOS 11.3, *) {
+            GCController.shouldMonitorBackgroundEvents = true
+        }
+        
         self.observeControllers()
     }
     
