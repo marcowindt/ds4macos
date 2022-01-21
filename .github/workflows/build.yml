@@ -1,0 +1,30 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - name: "Checkout Project"
+        uses: actions/checkout@v2
+
+      #
+      # Setup
+      #
+
+      - name: "Select Xcode"
+        uses: devbotsxyz/xcode-select@v1
+
+      #
+      # Build
+      #
+
+      - name: "Build"
+        run: xcodebuild -scheme ds4macos
