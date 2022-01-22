@@ -1,5 +1,9 @@
 # ds4macos
 
+## Troubleshoot
+
+🚨 ds4macos does not work with the latest version of Dolphin at the moment. Until [the issue](https://github.com/marcowindt/ds4macos/issues/8) is fixed you should use version [5.0-14363](https://dolphin-emu.org/download/dev/a208d529de0b95c77a39b8faed9eb5b2c077347a/) or earlier of Dolphin if you want to use this application. 
+
 ## Build & Run
 
 - Open this project in Xcode
