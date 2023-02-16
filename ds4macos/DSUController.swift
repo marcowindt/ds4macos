@@ -106,17 +106,14 @@ class DSUController {
     
     func inputValueChange(gamePad: GCExtendedGamepad, element: GCControllerElement) {
         self.updateControllerVariables()
-        self.controllerService?.reportController(dsuController: self)
     }
     
     func microInputValueChange(gamePad: GCMicroGamepad, element: GCControllerElement) {
         self.updateMicroControllerVariables()
-        self.controllerService?.reportController(dsuController: self)
     }
     
     func motionValueChange(motion: GCMotion) {
         self.updateControllerVariables()
-        self.controllerService?.reportController(dsuController: self)
         self.prevMotion = motion
     }
     
@@ -185,7 +182,7 @@ class DSUController {
             // acceleration
             accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
             accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
-            accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
+            accZ = getUInt8arrayFromDouble(num: -motion.acceleration.y)
             
             // gyroscope
             gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))
@@ -227,7 +224,7 @@ class DSUController {
         if self.gameController!.motion != nil, let motion = self.gameController?.motion! {
             // acceleration
             accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
-            accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
+            accY = getUInt8arrayFromDouble(num: -motion.acceleration.z)
             accZ = getUInt8arrayFromDouble(num: motion.acceleration.y)
             
             // gyroscope

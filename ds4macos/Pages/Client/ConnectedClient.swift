@@ -14,7 +14,7 @@ struct ConnectedClient: View {
             HStack {
                 Text("🟢").font(.headline)
                 VStack(alignment: .leading) {
-                    Text(self.client.address).font(.headline)
+                    Text(self.client.getViewValue()).font(.headline)
                 }
                 Spacer()
                 Text("Slots")

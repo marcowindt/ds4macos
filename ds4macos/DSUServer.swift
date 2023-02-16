@@ -5,13 +5,16 @@
 
 import Foundation
 import Network
+import SwiftAsyncSocket
 
 
-class DSUServer: ObservableObject {
+class DSUServer: ObservableObject, SwiftAsyncUDPSocketDelegate {
     
-    var server: NWListener?
-    @Published var portUDP: NWEndpoint.Port = 26760
-    @Published var ipAddress: String = "127.0.0.1"
+    @Published var portUDP: UInt16 = 26760
+    @Published var ipAddress: String = "localhost"
+    
+    let serverSocket: SwiftAsyncUDPSocket
+    let port: UInt16 = 26760
     
     @Published var isRunning: Bool = false
     
@@ -25,8 +28,10 @@ class DSUServer: ObservableObject {
     
     var controllerService: ControllerService?
     
+    var didReceiveData: ((Data) -> Void)?
+    
     init() {
-        
+        self.serverSocket = SwiftAsyncUDPSocket(delegate: nil, delegateQueue: self.backgroundQueueUdpListener)
     }
     
     func setControllerService(controllerService: ControllerService) {
@@ -35,13 +40,22 @@ class DSUServer: ObservableObject {
     
     func startServer() {
         do {
-            self.server = try NWListener(using: .udp, on: portUDP)
-            
-            self.server!.stateUpdateHandler = self.serverStateUpdateHandler
-            self.server!.newConnectionHandler = self.serverNewConnectionHandler
-            
-            self.server!.start(queue: backgroundQueueUdpListener)
+            self.serverSocket.delegate = self
+            try serverSocket.bind(to: "localhost", port: self.port)
+            try serverSocket.receiveAlways()
             self.isRunning = true
+            
+            let queue = DispatchQueue(label: "report loop")
+            queue.async {
+                while self.isRunning == true {
+                    self.controllerService?.reportControllers()
+                    Thread.sleep(forTimeInterval: 0.001)
+                }
+                if (self.isRunning == false) {
+                    print("server not running")
+                    Thread.sleep(forTimeInterval: 1.0)
+                }
+            }
         } catch {
             self.isRunning = false
             print("Could not isten for incoming udp")
@@ -49,8 +63,7 @@ class DSUServer: ObservableObject {
     }
     
     func stopServer() {
-        self.server?.cancel()
-        self.server = nil
+        self.serverSocket.close()
         for (_, client) in self.clients {
             client.close()
         }
@@ -59,120 +72,72 @@ class DSUServer: ObservableObject {
     
     func setPort(number: String) {
         if self.isRunning == false {
-            self.portUDP = NWEndpoint.Port(number)!
+            self.portUDP = UInt16(Int(number)!)
             print(self.portUDP)
         }
     }
     
-    func serverStateUpdateHandler(listenerState: NWListener.State) {
-        print("👂🏼👂🏼👂🏼 NWListener Handler called")
-        switch listenerState {
-            case .setup:
-                print("Listener: Setup")
-            case .waiting(let error):
-                print("Listener: Waiting \(error)")
-            case .ready:
-                print("Listener: ✅ Ready and listens on port: \(self.server?.port?.debugDescription ?? "-")")
-            case .failed(let error):
-                print("Listener: Failed \(error)")
-            case .cancelled:
-                print("Listener: 🛑 Cancelled by myOffButton")
-            default:
-                break;
-        }
-    }
-    
-    func serverNewConnectionHandler(newConnection: NWConnection) {
-        print("📞📞📞 NWConnection Handler called ")
-        newConnection.stateUpdateHandler = { (udpConnectionState) in
-
-            switch udpConnectionState {
-            case .setup:
-                print("Connection: 👨🏼‍💻 setup")
-            case .waiting(let error):
-                print("Connection: ⏰ waiting: \(error)")
-            case .ready:
-                print("Connection: ✅ ready")
-                self.handleIncoming(newConnection)
-            case .failed(let error):
-                print("Connection: 🔥 failed: \(error)")
-            case .cancelled:
-                print("Connection: 🛑 cancelled")
-            default:
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didReceive data: Data, from address: SwiftAsyncUDPSocketAddress, withFilterContext filterContext: Any?) {
+        if !data.isEmpty, data.count >= 20 {
+            let data = [UInt8](data)
+            let type = [UInt8](data[16...19])
+            
+            switch type {
+            case DSUMessage.TYPE_PORTS:
+                print("Received: Message Type: PORTS")
+                self.handleIncomingPortsRequest(socket: socket, fromAddress: address, data: data)
                 break
+            case DSUMessage.TYPE_DATA:
+                print("Received: Message Type: DATA")
+                self.handleIncomingDataRequest(socket: socket, fromAddress: address, data: data)
+                break
+            case DSUMessage.TYPE_VERSION:
+                print("Message Type: VERSION")
+                break
+            default:
+                print("Uknown message type")
             }
-            
         }
-
-        newConnection.start(queue: self.backgroundQueueUdpConnection)
     }
     
-    func handleIncoming(_ incomingConnection: NWConnection) {
-        incomingConnection.receiveMessage(completion: {(data, context, isComplete, error) in
-            
-            if let data = data, !data.isEmpty {
-                let data = [UInt8](data)
-                let type = [UInt8](data[16...19])
-                
-                switch type {
-                case DSUMessage.TYPE_PORTS:
-                    print("Received: Message Type: PORTS")
-                    self.handleIncomingPortsRequest(connection: incomingConnection, data: data)
-                    break
-                case DSUMessage.TYPE_DATA:
-                    print("Received: Message Type: DATA")
-                    self.handleIncomingDataRequest(connection: incomingConnection, data: data)
-                    break
-                case DSUMessage.TYPE_VERSION:
-                    print("Message Type: VERSION")
-                    break
-                default:
-                    print("Uknown message type")
-                }
-            }
-        })
-        
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didNotSendDataWith tag: Int, dueTo error: SwiftAsyncSocketError) {
+        print("did not send data error: \(error)")
     }
     
-    func handleIncomingPortsRequest(connection: NWConnection, data: [UInt8]) {
+    func handleIncomingPortsRequest(socket: SwiftAsyncUDPSocket, fromAddress: SwiftAsyncUDPSocketAddress, data: [UInt8]) {
         let requestsCount = data[20] // aka, the number of slots the client asked for
         
         for i in 0..<requestsCount {
             let dataMessage = self.getPortsPacket(index: i)
-            connection.send(content: Data(dataMessage), completion: NWConnection.SendCompletion.contentProcessed({ (error: NWError?) in
-                if error != nil {
-                    // Client disconnect?
-                    connection.cancel()
-                    print("Got an error sending ports data: \(error!)")
-                }
-            }))
+            do {
+                try socket.send(data: Data(dataMessage), address: fromAddress.address, tag: 23)
+            } catch {
+                print("could not send ports data")
+            }
         }
     }
     
-    func handleIncomingDataRequest(connection: NWConnection, data: [UInt8]) {
-        print("Incoming data request packet: \(Data(data).hexEncodedString())")
+    func handleIncomingDataRequest(socket: SwiftAsyncUDPSocket, fromAddress: SwiftAsyncUDPSocketAddress, data: [UInt8]) {
         let slotBased = data[20]
         let reqSlot = Int(data[21])
         let flags = data[24]
         let regId = data[25]
         
         if flags == 0 && regId == 0 {
-            switch connection.endpoint {
-            case .hostPort(let host, let port):
-                let clientAddress = "\(host):\(port)"
-                if self.clients[clientAddress] == nil {
-                    print("New client connection: \(clientAddress)")
-                    self.clients[clientAddress] = Client(server: self, connection: connection, address: clientAddress)
-                    self.clients[clientAddress]!.setSlot(slot: reqSlot)
-                    self.updateClientsViewModel()
-                } else {
-                    print("Refresh existing connection: \(clientAddress)")
-                    self.clients[clientAddress]!.setSlot(slot: reqSlot)
-                    self.clients[clientAddress]!.setTimeStampOnDataRequest()
+            let clientAddress = fromAddress.host
+            if self.clients[clientAddress] == nil {
+                print("New client connection: \(fromAddress.host) \(fromAddress.port)")
+                self.clients[clientAddress] = Client(server: self, socket: socket, address: fromAddress, port: fromAddress.port)
+                self.clients[clientAddress]!.setSlot(slot: reqSlot)
+                self.updateClientsViewModel()
+            } else {
+                if self.clients[clientAddress]!.port != fromAddress.port {
+                    print("Refresh existing connection: \(clientAddress) \(fromAddress.port) (prevPort: \(self.clients[clientAddress]!.port))")
+                    self.clients[clientAddress]?.close()
+                    self.clients[clientAddress] = Client(server: self, socket: socket, address: fromAddress, port: fromAddress.port)
                 }
-                break
-            default:
-                return
+                self.clients[clientAddress]!.setSlot(slot: reqSlot)
+                self.clients[clientAddress]!.setTimeStampOnDataRequest()
             }
         
             if self.controllerService != nil {
@@ -186,6 +151,8 @@ class DSUServer: ObservableObject {
                     }
                 }
             }
+        } else {
+            print("flags: \(flags), regId: \(regId)")
         }
     }
     
@@ -199,7 +166,10 @@ class DSUServer: ObservableObject {
     func report(controller: DSUController) {
         for (_, client) in self.clients {
             if client.slots[Int(controller.slot)] {
-                client.send(dataMessage: Data(controller.getDataPacket(counter: self.counter)))
+//                print("\(Date.init().timeIntervalSince1970.description) sending controller data to client \(client.address.host):\(client.port), slot: \(controller.slot)")
+                self.backgroundQueueUdpConnection.sync {
+                    client.send(dataMessage: Data(controller.getDataPacket(counter: self.counter)))
+                }
             }
         }
         self.counter += 1
@@ -210,35 +180,6 @@ class DSUServer: ObservableObject {
             self.clientsViewModel.clients = self.clients
         }
     }
-    
-//    func getIPAddress() -> String {
-//        var address: String?
-//        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
-//        if getifaddrs(&ifaddr) == 0 {
-//            var ptr = ifaddr
-//            while ptr != nil {
-//                defer { ptr = ptr?.pointee.ifa_next }
-//
-//                guard let interface = ptr?.pointee else { return "" }
-//                let addrFamily = interface.ifa_addr.pointee.sa_family
-//                if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-//
-//                    // wifi = ["en0"]
-//                    // wired = ["en2", "en3", "en4"]
-//                    // cellular = ["pdp_ip0","pdp_ip1","pdp_ip2","pdp_ip3"]
-//
-//                    let name: String = String(cString: (interface.ifa_name))
-//                    if  name == "en0" || name == "en2" || name == "en3" || name == "en4" || name == "pdp_ip0" || name == "pdp_ip1" || name == "pdp_ip2" || name == "pdp_ip3" {
-//                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-//                        getnameinfo(interface.ifa_addr, socklen_t((interface.ifa_addr.pointee.sa_len)), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST)
-//                        address = String(cString: hostname)
-//                    }
-//                }
-//            }
-//            freeifaddrs(ifaddr)
-//        }
-//        return address ?? ""
-//    }
     
 }
 

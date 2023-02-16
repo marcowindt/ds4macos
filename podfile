@@ -1,0 +1,3 @@
+target 'ds4macos' do
+  pod 'SwiftAsyncSocket'
+end
