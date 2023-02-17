@@ -19,6 +19,14 @@ jobs:
       - name: "Select Xcode"
         uses: devbotsxyz/xcode-select@v1
 
+      - name: "Setup Cocoapods"
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: Podfile.lock
+
+      - name: "Pod Install"
+        run: pod install
+
       #
       # First we do a developer build that we archive into an
       # .xcarchive.
