@@ -22,9 +22,17 @@ jobs:
       - name: "Select Xcode"
         uses: devbotsxyz/xcode-select@v1
 
+      - name: "Setup Cocoapods"
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: Podfile.lock
+
+      - name: "Pod Install"
+        run: pod install
+
       #
       # Build
       #
 
       - name: "Build"
-        run: xcodebuild -scheme ds4macos
+        run: xcodebuild clean build -workspace ds4macos.xcworkspace -scheme ds4macos

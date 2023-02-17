@@ -1,0 +1,16 @@
+PODS:
+  - SwiftAsyncSocket (0.2.0)
+
+DEPENDENCIES:
+  - SwiftAsyncSocket
+
+SPEC REPOS:
+  trunk:
+    - SwiftAsyncSocket
+
+SPEC CHECKSUMS:
+  SwiftAsyncSocket: cd8e4004406af6baa970555d6c97435441699bea
+
+PODFILE CHECKSUM: 8a9b813b20e553ec9ab32a65fec869215c0569a5
+
+COCOAPODS: 1.11.2

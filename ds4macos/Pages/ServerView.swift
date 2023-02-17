@@ -8,10 +8,8 @@ import SwiftUI
 import Combine
 
 struct ServerView: View {
-    @EnvironmentObject var server: DSUServer
+    @EnvironmentObject var serverViewModel: ServerViewModel
     @EnvironmentObject var clientsViewModel: ClientsViewModel
-    @State var portNum: String = "26760"
-    @State var ipAddress: String = "127.0.0.1"
     @State private var showAlert: Bool = false
 
     var body: some View {
@@ -22,7 +20,7 @@ struct ServerView: View {
                         .font(.title)
                 }
                 VStack(alignment: .leading) {
-                    if self.server.isRunning {
+                    if self.serverViewModel.isRunning {
                         Text("Server is running")
                     } else {
                         Text("Server stopped")
@@ -32,18 +30,18 @@ struct ServerView: View {
                     VStack {
                         HStack(spacing: 10) {
                             Text("IP Address").frame(width: 100, alignment: .leading)
-                            TextField("IP Address", text: $ipAddress).disabled(true)
+                            TextField("IP Address", text: $serverViewModel.ipAddress).disabled(true)
                         }
                         HStack(spacing: 10) {
                             Text("Port").frame(width: 100, alignment: .leading)
-                            TextField("port number", text: $portNum)
-                                .onReceive(Just(portNum)) { typedValue in
+                            TextField("port number", text: $serverViewModel.portUDP)
+                                .onReceive(serverViewModel.$portUDP) { typedValue in
                                     if let newValue = Int(typedValue) {
-                                        self.portNum = newValue.description
+                                        self.serverViewModel.dsuServer.setPort(number: newValue.description)
                                     } else {
-                                        self.portNum = "26760"
+                                        self.serverViewModel.dsuServer.setPort(number: serverViewModel.portUDP)
                                     }
-                                }.disabled(self.server.isRunning)
+                                }.disabled(self.serverViewModel.isRunning)
                         }
                     }.padding(10)
                 }
@@ -60,16 +58,16 @@ struct ServerView: View {
                 
                 Divider()
                 
-                if self.server.isRunning {
+                if self.serverViewModel.isRunning {
                     Button("Stop server") {
-                        self.server.stopServer()
+                        self.serverViewModel.dsuServer.stopServer()
                     }
                 } else {
                     Button("Start server") {
-                        let portValue = Int(self.portNum) ?? 0
+                        let portValue = Int(self.serverViewModel.portUDP) ?? 0
                         if portValue > 1 && portValue < 65355 {
-                            self.server.setPort(number: portValue.description)
-                            self.server.startServer()
+                            self.serverViewModel.dsuServer.setPort(number: portValue.description)
+                            self.serverViewModel.dsuServer.startServer()
                         } else {
                             self.showAlert = true
                         }

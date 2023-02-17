@@ -1,3 +1,5 @@
 build/
 export/
 .DS_Store
+Pods
+xcuserdata

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09E8742555C4AD2C30120BC1 /* libPods-ds4macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F14A78F8B78013CACB4C035 /* libPods-ds4macos.a */; };
 		8E03944725AF674F00F1DA1E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E03944625AF674F00F1DA1E /* Client.swift */; };
 		8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */; };
 		8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06487125A3BF0B00577AF8 /* ContentView.swift */; };
@@ -23,6 +24,7 @@
 		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
 		8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */; };
 		8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */; };
+		9EE90ABF29A026ED00EE37A4 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4macos.debug.xcconfig"; path = "Target Support Files/Pods-ds4macos/Pods-ds4macos.debug.xcconfig"; sourceTree = "<group>"; };
+		5F14A78F8B78013CACB4C035 /* libPods-ds4macos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ds4macos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E03944625AF674F00F1DA1E /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8E06486C25A3BF0B00577AF8 /* ds4macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ds4macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosApp.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 		8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
+		9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
+		FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4macos.release.xcconfig"; path = "Target Support Files/Pods-ds4macos/Pods-ds4macos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E8742555C4AD2C30120BC1 /* libPods-ds4macos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +104,8 @@
 			children = (
 				8E06486E25A3BF0B00577AF8 /* ds4macos */,
 				8E06486D25A3BF0B00577AF8 /* Products */,
+				A9EF2E8907440699E6A075A9 /* Pods */,
+				B57303D4F5D01B67DB88EA7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +137,7 @@
 				8E0E51C825A763D300410DFF /* ControllerService.swift */,
 				8E03944625AF674F00F1DA1E /* Client.swift */,
 				8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */,
+				9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */,
 			);
 			path = ds4macos;
 			sourceTree = "<group>";
@@ -168,6 +178,23 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
+		A9EF2E8907440699E6A075A9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */,
+				FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B57303D4F5D01B67DB88EA7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F14A78F8B78013CACB4C035 /* libPods-ds4macos.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,6 +202,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E06489225A3BF0D00577AF8 /* Build configuration list for PBXNativeTarget "ds4macos" */;
 			buildPhases = (
+				3D93481D5D184A0AAC5B867B /* [CP] Check Pods Manifest.lock */,
 				8E06486825A3BF0B00577AF8 /* Sources */,
 				8E06486925A3BF0B00577AF8 /* Frameworks */,
 				8E06486A25A3BF0B00577AF8 /* Resources */,
@@ -292,6 +320,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D93481D5D184A0AAC5B867B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ds4macos-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8E06486825A3BF0B00577AF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -305,6 +358,7 @@
 				8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */,
 				8E0E518C25A6542000410DFF /* ServerView.swift in Sources */,
 				8E0E51C425A7620B00410DFF /* DSUServer.swift in Sources */,
+				9EE90ABF29A026ED00EE37A4 /* ServerViewModel.swift in Sources */,
 				8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */,
 				8E0E518725A6541300410DFF /* ControllersView.swift in Sources */,
 				8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */,
@@ -461,15 +515,17 @@
 		};
 		8E06489325A3BF0D00577AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macos.entitlements;
 				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";
-				DEVELOPMENT_TEAM = JFH2RJBPA9;
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ds4macos/Info.plist;
@@ -487,12 +543,14 @@
 		};
 		8E06489425A3BF0D00577AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macosRelease.entitlements;
 				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";
 				DEVELOPMENT_TEAM = "";

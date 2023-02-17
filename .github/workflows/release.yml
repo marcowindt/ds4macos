@@ -19,13 +19,21 @@ jobs:
       - name: "Select Xcode"
         uses: devbotsxyz/xcode-select@v1
 
+      - name: "Setup Cocoapods"
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: Podfile.lock
+
+      - name: "Pod Install"
+        run: pod install
+
       #
       # First we do a developer build that we archive into an
       # .xcarchive.
       #
 
       - name: "Archive"
-        run: xcodebuild -scheme ds4macos archive -archivePath build/ds4macos
+        run: xcodebuild -workspace ds4macos.xcworkspace -scheme ds4macos archive -archivePath build/ds4macos
 
       - name: "Export"
         run: xcodebuild -exportArchive -archivePath build/ds4macos.xcarchive -exportPath export/ -exportOptionsPlist .github/exportOptionsGithub.plist 

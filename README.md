@@ -1,23 +1,21 @@
 # ds4macos
 
-## Troubleshoot
-
-🚨 ds4macos does not work with the latest version of Dolphin at the moment. Until [the issue](https://github.com/marcowindt/ds4macos/issues/8) is fixed you should use version [5.0-14363](https://dolphin-emu.org/download/dev/a208d529de0b95c77a39b8faed9eb5b2c077347a/) or earlier of Dolphin if you want to use this application. 
-
 ## Build & Run
 
-- Open this project in Xcode
+- Make sure you have cocoapods installed
+- Run `pod install`
+- Open `ds4macos.xcworkspace` in Xcode (**not** `ds4macos.xcodeproj`)
 - Make sure your Signing & Capabilities settings are correct, change the bundle identifier if needed
 - Press run
 
-## DualShock 4 Controllers
+## DualShock 4 / DualSense Controllers
 
 This application is designed to also have motion data available from DS4 controllers in the Dolphin emulator on MacOS.
 If you aren't interested in using the accelerometer and gyro of DS4 controler(s) then this application is not needed, 
 since simple button mapping works straight away with Dolphin.
 
-Although made for DS4 controllers, it is implemented using existing libraries in MacOS.
-Thus in principle other types of controllers may work as well, but need to be compatible with MacOS already and only DS4 controllers have been tested with this application.
+Although made for DS4 controllers, it is implemented using Swift GameController library.
+Thus in principle other types of controllers may work as well, but need to be compatible with MacOS already and only DS4 & DualSense controllers have been tested with this application.
 
 ## Dolphin
 
