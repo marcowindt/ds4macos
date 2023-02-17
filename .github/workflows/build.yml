@@ -22,6 +22,9 @@ jobs:
       - name: "Select Xcode"
         uses: devbotsxyz/xcode-select@v1
 
+      - name: "Pod install"
+	uses: maxim-lobanov/setup-cocoapods@v1
+
       #
       # Build
       #
