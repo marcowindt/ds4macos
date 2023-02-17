@@ -24,6 +24,8 @@ jobs:
 
       - name: "Pod install"
         uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: Podfile.lock
 
       #
       # Build
