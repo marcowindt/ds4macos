@@ -24,6 +24,7 @@
 		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
 		8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */; };
 		8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */; };
+		9EE90ABF29A026ED00EE37A4 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 		8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
+		9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
 		FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4macos.release.xcconfig"; path = "Target Support Files/Pods-ds4macos/Pods-ds4macos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 				8E0E51C825A763D300410DFF /* ControllerService.swift */,
 				8E03944625AF674F00F1DA1E /* Client.swift */,
 				8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */,
+				9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */,
 			);
 			path = ds4macos;
 			sourceTree = "<group>";
@@ -181,7 +184,6 @@
 				51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */,
 				FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -356,6 +358,7 @@
 				8E0648A725A49D6300577AF8 /* DSUMessage.swift in Sources */,
 				8E0E518C25A6542000410DFF /* ServerView.swift in Sources */,
 				8E0E51C425A7620B00410DFF /* DSUServer.swift in Sources */,
+				9EE90ABF29A026ED00EE37A4 /* ServerViewModel.swift in Sources */,
 				8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */,
 				8E0E518725A6541300410DFF /* ControllersView.swift in Sources */,
 				8E0E51C925A763D300410DFF /* ControllerService.swift in Sources */,
@@ -518,6 +521,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macos.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";
@@ -545,6 +549,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macosRelease.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";

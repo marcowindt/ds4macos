@@ -44,19 +44,22 @@ class Client {
     }
     
     func send(dataMessage: Data) {
+        if (UInt64(Date.init().timeIntervalSince1970 * 1000000) - self.timeStampLastDataRequest) > self.timeOut {
+            print("client timed out, removing from client list")
+            self.close()
+            return
+        }
         do {
             try self.socket.send(data: dataMessage, address: self.address.address, tag: 10)
         } catch {
+            self.close()
             print("could not send data to client")
         }
     }
     
     func close() {
-        self.socket.close()
-//        DispatchQueue.main.sync {
-        self.server.clients.removeValue(forKey: self.address.host)
+        self.server.clients.removeValue(forKey: "\(self.address.host):\(self.address.port)")
         self.server.updateClientsViewModel()
-//        }
     }
     
     func getViewValue() -> String {

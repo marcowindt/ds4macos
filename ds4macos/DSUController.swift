@@ -10,6 +10,8 @@ import GameController
 @available(OSX 11.0, *)
 class DSUController {
     
+    let motionLock = NSLock()
+    
     static let GRAVITY: Double = 1.0
     
     var slot: UInt8 = 0x00
@@ -179,6 +181,7 @@ class DSUController {
         timeStamp = UInt64(Date.init().timeIntervalSince1970 * 1000000)
         
         if self.gameController!.motion != nil, let motion = self.gameController?.motion! {
+            self.motionLock.lock()
             // acceleration
             accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
             accY = getUInt8arrayFromDouble(num: motion.acceleration.z)
@@ -188,6 +191,7 @@ class DSUController {
             gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))
             gyroY = getUInt8arrayFromDouble(num: -self.radiansToDegree(num: motion.rotationRate.z))
             gyroZ = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.y))
+            self.motionLock.unlock()
         }
     }
     
@@ -222,6 +226,7 @@ class DSUController {
         timeStamp = UInt64(Date.init().timeIntervalSince1970 * 1000000)
         
         if self.gameController!.motion != nil, let motion = self.gameController?.motion! {
+            self.motionLock.lock()
             // acceleration
             accX = getUInt8arrayFromDouble(num: motion.acceleration.x)
             accY = getUInt8arrayFromDouble(num: -motion.acceleration.z)
@@ -231,6 +236,7 @@ class DSUController {
             gyroX = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.x))
             gyroY = getUInt8arrayFromDouble(num: -self.radiansToDegree(num: motion.rotationRate.z))
             gyroZ = getUInt8arrayFromDouble(num: self.radiansToDegree(num: motion.rotationRate.y))
+            self.motionLock.unlock()
         }
     }
     
@@ -308,12 +314,14 @@ class DSUController {
         
         packet.append(contentsOf: touchPad)
         packet.append(contentsOf: getTimestampUInt8array(timeStamp: timeStamp))
+        self.motionLock.lock()
         packet.append(contentsOf: accX)
         packet.append(contentsOf: accY)
         packet.append(contentsOf: accZ)
         packet.append(contentsOf: gyroX)
         packet.append(contentsOf: gyroY)
         packet.append(contentsOf: gyroZ)
+        self.motionLock.unlock()
         
         return DSUMessage.make(type: DSUMessage.TYPE_DATA, data: packet)
     }
