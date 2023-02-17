@@ -2,5 +2,4 @@ build/
 export/
 .DS_Store
 Pods
-Podfile.lock
 xcuserdata
