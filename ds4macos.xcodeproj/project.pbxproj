@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09E8742555C4AD2C30120BC1 /* libPods-ds4macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F14A78F8B78013CACB4C035 /* libPods-ds4macos.a */; };
+		2830494DECF767A903B8DCAE /* libPods-ds4ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC9CF5449E0D5484014AC3 /* libPods-ds4ios.a */; };
 		8E03944725AF674F00F1DA1E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E03944625AF674F00F1DA1E /* Client.swift */; };
 		8E06487025A3BF0B00577AF8 /* ds4macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */; };
 		8E06487225A3BF0B00577AF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06487125A3BF0B00577AF8 /* ContentView.swift */; };
@@ -24,6 +25,23 @@
 		8E7924AE25A4AE660098A822 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
 		8E93D71725B22F4A00BEAFB6 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */; };
 		8E93D71D25B23A9800BEAFB6 /* ConnectedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */; };
+		9E01AF8A29A69C63001BA0A6 /* ds4iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AF8929A69C63001BA0A6 /* ds4iosApp.swift */; };
+		9E01AF8E29A69C65001BA0A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E01AF8D29A69C65001BA0A6 /* Assets.xcassets */; };
+		9E01AF9129A69C65001BA0A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E01AF9029A69C65001BA0A6 /* Preview Assets.xcassets */; };
+		9E01AFB229A69ECB001BA0A6 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFB129A69ECB001BA0A6 /* ServerViewModel.swift */; };
+		9E01AFB829A69F55001BA0A6 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFB729A69F55001BA0A6 /* ClientsViewModel.swift */; };
+		9E01AFBA29A69F6B001BA0A6 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFB929A69F6B001BA0A6 /* Client.swift */; };
+		9E01AFBC29A69F76001BA0A6 /* ControllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFBB29A69F76001BA0A6 /* ControllerService.swift */; };
+		9E01AFC029A69F91001BA0A6 /* ControllerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFBF29A69F90001BA0A6 /* ControllerInfo.swift */; };
+		9E01AFC629A69FBF001BA0A6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFC529A69FBF001BA0A6 /* ContentView.swift */; };
+		9E01AFCB29A6A24F001BA0A6 /* ConnectedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFCA29A6A24F001BA0A6 /* ConnectedClient.swift */; };
+		9E01AFCD29A6A25B001BA0A6 /* ControllerBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFCC29A6A25B001BA0A6 /* ControllerBox.swift */; };
+		9E01AFCF29A6A266001BA0A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFCE29A6A266001BA0A6 /* SettingsView.swift */; };
+		9E01AFD129A6A271001BA0A6 /* ControllersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFD029A6A271001BA0A6 /* ControllersView.swift */; };
+		9E01AFD329A6A27F001BA0A6 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01AFD229A6A27F001BA0A6 /* ServerView.swift */; };
+		9E01AFD529A74A82001BA0A6 /* DSUServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0E51C325A7620B00410DFF /* DSUServer.swift */; };
+		9E01AFD629A74A86001BA0A6 /* DSUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7924AD25A4AE660098A822 /* DSUController.swift */; };
+		9E01AFD729A74A89001BA0A6 /* DSUMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0648A625A49D6300577AF8 /* DSUMessage.swift */; };
 		9EE90ABF29A026ED00EE37A4 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +65,7 @@
 /* Begin PBXFileReference section */
 		51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4macos.debug.xcconfig"; path = "Target Support Files/Pods-ds4macos/Pods-ds4macos.debug.xcconfig"; sourceTree = "<group>"; };
 		5F14A78F8B78013CACB4C035 /* libPods-ds4macos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ds4macos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87EC9CF5449E0D5484014AC3 /* libPods-ds4ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ds4ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E03944625AF674F00F1DA1E /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8E06486C25A3BF0B00577AF8 /* ds4macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ds4macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E06486F25A3BF0B00577AF8 /* ds4macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4macosApp.swift; sourceTree = "<group>"; };
@@ -69,7 +88,24 @@
 		8E7924AD25A4AE660098A822 /* DSUController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUController.swift; sourceTree = "<group>"; };
 		8E93D71625B22F4A00BEAFB6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		8E93D71C25B23A9800BEAFB6 /* ConnectedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
+		959C61A7043DF318F32F4C89 /* Pods-ds4ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4ios.release.xcconfig"; path = "Target Support Files/Pods-ds4ios/Pods-ds4ios.release.xcconfig"; sourceTree = "<group>"; };
+		9E01AF8729A69C63001BA0A6 /* ds4ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ds4ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E01AF8929A69C63001BA0A6 /* ds4iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ds4iosApp.swift; sourceTree = "<group>"; };
+		9E01AF8D29A69C65001BA0A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E01AF9029A69C65001BA0A6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9E01AFB129A69ECB001BA0A6 /* ServerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
+		9E01AFB729A69F55001BA0A6 /* ClientsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
+		9E01AFB929A69F6B001BA0A6 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		9E01AFBB29A69F76001BA0A6 /* ControllerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerService.swift; sourceTree = "<group>"; };
+		9E01AFBF29A69F90001BA0A6 /* ControllerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerInfo.swift; sourceTree = "<group>"; };
+		9E01AFC529A69FBF001BA0A6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9E01AFCA29A6A24F001BA0A6 /* ConnectedClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedClient.swift; sourceTree = "<group>"; };
+		9E01AFCC29A6A25B001BA0A6 /* ControllerBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerBox.swift; sourceTree = "<group>"; };
+		9E01AFCE29A6A266001BA0A6 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9E01AFD029A6A271001BA0A6 /* ControllersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllersView.swift; sourceTree = "<group>"; };
+		9E01AFD229A6A27F001BA0A6 /* ServerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 		9EE90ABE29A026ED00EE37A4 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
+		F58A3EC367C2EE02DFFB45C4 /* Pods-ds4ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4ios.debug.xcconfig"; path = "Target Support Files/Pods-ds4ios/Pods-ds4ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ds4macos.release.xcconfig"; path = "Target Support Files/Pods-ds4macos/Pods-ds4macos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +132,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9E01AF8429A69C63001BA0A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2830494DECF767A903B8DCAE /* libPods-ds4ios.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -103,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				8E06486E25A3BF0B00577AF8 /* ds4macos */,
+				9E01AF8829A69C63001BA0A6 /* ds4ios */,
 				8E06486D25A3BF0B00577AF8 /* Products */,
 				A9EF2E8907440699E6A075A9 /* Pods */,
 				B57303D4F5D01B67DB88EA7D /* Frameworks */,
@@ -115,6 +160,7 @@
 				8E06486C25A3BF0B00577AF8 /* ds4macos.app */,
 				8E06487E25A3BF0D00577AF8 /* ds4macosTests.xctest */,
 				8E06488925A3BF0D00577AF8 /* ds4macosUITests.xctest */,
+				9E01AF8729A69C63001BA0A6 /* ds4ios.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,11 +224,66 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
+		9E01AF8829A69C63001BA0A6 /* ds4ios */ = {
+			isa = PBXGroup;
+			children = (
+				9E01AFC729A6A22A001BA0A6 /* Pages */,
+				9E01AFC529A69FBF001BA0A6 /* ContentView.swift */,
+				9E01AFBF29A69F90001BA0A6 /* ControllerInfo.swift */,
+				9E01AFBB29A69F76001BA0A6 /* ControllerService.swift */,
+				9E01AFB929A69F6B001BA0A6 /* Client.swift */,
+				9E01AFB729A69F55001BA0A6 /* ClientsViewModel.swift */,
+				9E01AFB129A69ECB001BA0A6 /* ServerViewModel.swift */,
+				9E01AF8929A69C63001BA0A6 /* ds4iosApp.swift */,
+				9E01AF8D29A69C65001BA0A6 /* Assets.xcassets */,
+				9E01AF8F29A69C65001BA0A6 /* Preview Content */,
+			);
+			path = ds4ios;
+			sourceTree = "<group>";
+		};
+		9E01AF8F29A69C65001BA0A6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9E01AF9029A69C65001BA0A6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9E01AFC729A6A22A001BA0A6 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				9E01AFD229A6A27F001BA0A6 /* ServerView.swift */,
+				9E01AFD029A6A271001BA0A6 /* ControllersView.swift */,
+				9E01AFCE29A6A266001BA0A6 /* SettingsView.swift */,
+				9E01AFC929A6A239001BA0A6 /* Controller */,
+				9E01AFC829A6A231001BA0A6 /* Client */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		9E01AFC829A6A231001BA0A6 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				9E01AFCA29A6A24F001BA0A6 /* ConnectedClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		9E01AFC929A6A239001BA0A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9E01AFCC29A6A25B001BA0A6 /* ControllerBox.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A9EF2E8907440699E6A075A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */,
 				FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */,
+				F58A3EC367C2EE02DFFB45C4 /* Pods-ds4ios.debug.xcconfig */,
+				959C61A7043DF318F32F4C89 /* Pods-ds4ios.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -191,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				5F14A78F8B78013CACB4C035 /* libPods-ds4macos.a */,
+				87EC9CF5449E0D5484014AC3 /* libPods-ds4ios.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -252,13 +354,31 @@
 			productReference = 8E06488925A3BF0D00577AF8 /* ds4macosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		9E01AF8629A69C63001BA0A6 /* ds4ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E01AFAE29A69C66001BA0A6 /* Build configuration list for PBXNativeTarget "ds4ios" */;
+			buildPhases = (
+				D8DA3A3A394C3CE91C10D7E1 /* [CP] Check Pods Manifest.lock */,
+				9E01AF8329A69C63001BA0A6 /* Sources */,
+				9E01AF8429A69C63001BA0A6 /* Frameworks */,
+				9E01AF8529A69C63001BA0A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ds4ios;
+			productName = ds4ios;
+			productReference = 9E01AF8729A69C63001BA0A6 /* ds4ios.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8E06486425A3BF0B00577AF8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					8E06486B25A3BF0B00577AF8 = {
@@ -271,6 +391,9 @@
 					8E06488825A3BF0D00577AF8 = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 8E06486B25A3BF0B00577AF8;
+					};
+					9E01AF8629A69C63001BA0A6 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -290,6 +413,7 @@
 				8E06486B25A3BF0B00577AF8 /* ds4macos */,
 				8E06487D25A3BF0D00577AF8 /* ds4macosTests */,
 				8E06488825A3BF0D00577AF8 /* ds4macosUITests */,
+				9E01AF8629A69C63001BA0A6 /* ds4ios */,
 			);
 		};
 /* End PBXProject section */
@@ -318,6 +442,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9E01AF8529A69C63001BA0A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E01AF9129A69C65001BA0A6 /* Preview Assets.xcassets in Resources */,
+				9E01AF8E29A69C65001BA0A6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -337,6 +470,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ds4macos-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8DA3A3A394C3CE91C10D7E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ds4ios-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -379,6 +534,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E01AF8329A69C63001BA0A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E01AFCB29A6A24F001BA0A6 /* ConnectedClient.swift in Sources */,
+				9E01AF8A29A69C63001BA0A6 /* ds4iosApp.swift in Sources */,
+				9E01AFB229A69ECB001BA0A6 /* ServerViewModel.swift in Sources */,
+				9E01AFBC29A69F76001BA0A6 /* ControllerService.swift in Sources */,
+				9E01AFBA29A69F6B001BA0A6 /* Client.swift in Sources */,
+				9E01AFC629A69FBF001BA0A6 /* ContentView.swift in Sources */,
+				9E01AFD129A6A271001BA0A6 /* ControllersView.swift in Sources */,
+				9E01AFC029A69F91001BA0A6 /* ControllerInfo.swift in Sources */,
+				9E01AFD629A74A86001BA0A6 /* DSUController.swift in Sources */,
+				9E01AFB829A69F55001BA0A6 /* ClientsViewModel.swift in Sources */,
+				9E01AFD529A74A82001BA0A6 /* DSUServer.swift in Sources */,
+				9E01AFD329A6A27F001BA0A6 /* ServerView.swift in Sources */,
+				9E01AFCD29A6A25B001BA0A6 /* ControllerBox.swift in Sources */,
+				9E01AFD729A74A89001BA0A6 /* DSUMessage.swift in Sources */,
+				9E01AFCF29A6A266001BA0A6 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,12 +694,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51047C84CF2AEEB1D59CCDB9 /* Pods-ds4macos.debug.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macos.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";
 				DEVELOPMENT_TEAM = 6PP9YRSTW5;
@@ -537,6 +715,10 @@
 				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = nl.dijkitech.ds4macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -545,15 +727,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FAA502038DA1D1B7640C6D84 /* Pods-ds4macos.release.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ds4macos/ds4macosRelease.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"ds4macos/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ds4macos/Info.plist;
@@ -565,6 +748,10 @@
 				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = nl.dijkitech.ds4macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -576,7 +763,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JFH2RJBPA9;
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
 				INFOPLIST_FILE = ds4macosTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -598,7 +785,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JFH2RJBPA9;
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
 				INFOPLIST_FILE = ds4macosTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -619,7 +806,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JFH2RJBPA9;
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
 				INFOPLIST_FILE = ds4macosUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,7 +826,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = JFH2RJBPA9;
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
 				INFOPLIST_FILE = ds4macosUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -650,6 +837,73 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = ds4macos;
+			};
+			name = Release;
+		};
+		9E01AFA829A69C66001BA0A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F58A3EC367C2EE02DFFB45C4 /* Pods-ds4ios.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ds4ios/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.dijkitech.ds4ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E01AFA929A69C66001BA0A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 959C61A7043DF318F32F4C89 /* Pods-ds4ios.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ds4ios/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PP9YRSTW5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.dijkitech.ds4ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -688,6 +942,15 @@
 			buildConfigurations = (
 				8E06489925A3BF0D00577AF8 /* Debug */,
 				8E06489A25A3BF0D00577AF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E01AFAE29A69C66001BA0A6 /* Build configuration list for PBXNativeTarget "ds4ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E01AFA829A69C66001BA0A6 /* Debug */,
+				9E01AFA929A69C66001BA0A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

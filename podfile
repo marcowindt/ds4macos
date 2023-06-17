@@ -1,3 +1,9 @@
+target 'ds4ios' do
+  platform :ios, '15.0'
+  pod 'SwiftAsyncSocket'
+end
+
 target 'ds4macos' do
+  platform :osx
   pod 'SwiftAsyncSocket'
 end
