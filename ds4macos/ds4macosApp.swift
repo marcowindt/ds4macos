@@ -8,7 +8,7 @@ import GameController
 import Network
 
 @main
-class ds4macosApp: App {
+struct ds4macosApp: App {
     var activity: NSObjectProtocol?
     
     var body: some Scene {
@@ -26,7 +26,7 @@ class ds4macosApp: App {
     var dsuServer: DSUServer?
     var controllerService: ControllerService?
     
-    required init() {
+   init() {
         self.activity = ProcessInfo.processInfo.beginActivity(options: .userInitiatedAllowingIdleSystemSleep, reason: "ds4macos UDP server")
         
         self.dsuServer = DSUServer()
