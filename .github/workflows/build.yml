@@ -19,8 +19,10 @@ jobs:
       # Setup
       #
 
-      - name: "Select Xcode"
-        uses: devbotsxyz/xcode-select@v1
+      - name: "Setup Xcode"
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
       - name: "Setup Cocoapods"
         uses: maxim-lobanov/setup-cocoapods@v1
