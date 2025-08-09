@@ -2,6 +2,11 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Version tag name'
+        type: string
+        required: false
   push:
     tags: [ v* ]
 
@@ -56,3 +61,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ds4macos.zip
+          tag_name: ${{ github.ref_name || }
