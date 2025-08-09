@@ -8,6 +8,9 @@ jobs:
   release:
     runs-on: macos-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: "Checkout Project"
         uses: actions/checkout@v2
@@ -52,5 +55,3 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ds4macos.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.token }}
