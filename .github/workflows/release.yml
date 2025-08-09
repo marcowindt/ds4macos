@@ -61,4 +61,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ds4macos.zip
-          tag_name: ${{ github.ref_name || }
+          tag_name: ${{ github.ref_name || inputs.tag_name }}
